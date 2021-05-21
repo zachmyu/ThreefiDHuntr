@@ -1,0 +1,72 @@
+'use strict';
+const bcrypt = require('bcryptjs');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert('Users', [
+      { username: "demomoore", fullName: "Demo Moore", email: "demo@mcdemiface.com", about: "I'm a demo user!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "adamlovett", fullName: "Adam Lovett", email: "adamlovett@aastudent.com", about: "I have so much knowledge about computer science, but CSS kicks my butt", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "alexbetita", fullName: "Alex Betita", email: "alexbetita@aastudent.com", about: "I code super fast!!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "alexandrabouillon", fullName: "Alexandra Bouillon", email: "alexandrabouillon@aastudent.com", about: "I take really good notes.", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "amberbancroft", fullName: "Amber Bancroft", email: "amberbancroft@aastudent.com", about: "I have a love-hate relationship with Jefferson lol", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "ananyahans", fullName: "Ananya Hans", email: "ananyahans@aastudent.com", about: "I love rock climbing!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "andrewmusta", fullName: "Andrew Musta", email: "andrewmusta@aastudent.com", about: "I have an air of mystery about me", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "andrewloeffler", fullName: "Andrew Loeffler", email: "andrewloeffler@aastudent.com", about: "I have a hidden sense of humor, but once you get to know me, I'm quite funny", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "benash", fullName: "Ben Ash", email: "benash@aastudent.com", about: "Love music of all sorts, I'm actually a composer!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "chrispettet", fullName: "Chris Pettet", email: "chrispettet@aastudent.com", about: "My nickname is Chris P Bacon", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "chrisregan", fullName: "Chris Regan", email: "chrisregan@aastudent.com", about: "I love putting bread on dogs, it's quite amusing", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "connorhenderson", fullName: "Connor Henderson", email: "connorhenderson@aastudent.com", about: "I've been told that I look like Tom Holland and Joseph Gordon-Levitt's love child", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "danielrosen", fullName: "Daniel Rosen", email: "danielrosen@aastudent.com", about: "Don't let my appearance fool you, I am actually a super chill guy!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "dannychen", fullName: "Danny Chen", email: "dannychen@aastudent.com", about: "I may look real serious, but I have a great sense of humor", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "davishandler", fullName: "Davis Handler", email: "davishandler@aastudent.com", about: "Bitcoin is my life!!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "drewlong", fullName: "Drew Long", email: "drewlong@aastudent.com", about: "Secret champion of SMASH!!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "drewosmond", fullName: "Drew Osmond", email: "drewosmond@aanotastudent.com", about: "Geek at heart", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "ebtayara", fullName: "Eb Tayara", email: "ebtayara@aastudent.com", about: "My dog doesn't know how to heel", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "eddykim", fullName: "Eddy Kim", email: "eddykim@aastudent.com", about: "You can't tell me what to do!!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "ethankaseff", fullName: "Ethan Kaseff", email: "ethankaseff@aastudent.com", about: "Professional cuddler at your service!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "felipearaujo", fullName: "Felipe Araujo", email: "felipearaujo@aastudent.com", about: "I never show my face because of reasons", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "geoffreyyang", fullName: "Geoffrey Yang", email: "geoffreyyang@aastudent.com", about: "I don't need to learn, but I do it anyway because I love learning", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "estherkang", fullName: "Esther Kang", email: "estherkang@aastudent.com", about: "Deep down, I'm just a huge softy", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "jacobleonhardt", fullName: "Jacob Leonhardt", email: "jacobleonhardt@aastudent.com", about: "God bless!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "jamesmayfield", fullName: "James Mayfield", email: "jamesmayfield@aastudent.com", about: "I love working as an EMT", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "jamesdaniel", fullName: "James Daniel", email: "jamesdaniel@aastudent.com", about: "I've recently really gotten into bike riding", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "jefflopezgarcia", fullName: "Jeff Lopez Garcia", email: "jefflopezgarcia@aastudent.com", about: "I have a love-hate relationship with Amber lol", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "jiali", fullName: "Jia Li", email: "jiali@aastudent.com", about: "Zach is the top half of me", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "jimmyly", fullName: "Jimmy Ly", email: "jimmyly@aastudent.com", about: "I am a multilingual cusser", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "jimsonma", fullName: "Jimson Ma", email: "jimsonma@aastudent.com", about: "I am secretly never asleep", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "joealves", fullName: "Joe Alves", email: "joealves@aanotastudent.com", about: "I love coooooodinnnnngggggg", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "johnsims", fullName: "John Sims", email: "johnsims@aastudent.com", about: "lolol I love playing guitar", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "johnshivers", fullName: "John Shivers", email: "johnshivers@aastudent.com", about: "Dude.", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "jonathansalguero", fullName: "Jonathan Salguero", email: "jonathansalguero@aastudent.com", about: "Helloooooo", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "jordynsechrist", fullName: "Jordyn Sechrist", email: "jordynsechrist@aastudent.com", about: "Elon Musk is my personal god", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "justinwong", fullName: "Justin Wong", email: "justinwong@aastudent.com", about: "WASSSSUUUUUUPPPP", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "kevinbetker", fullName: "Kevin Betker", email: "kevinbetker@aastudent.com", about: "I may look trippy but I'm secretly a CSS god", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "kevintran", fullName: "Kevin Tran", email: "kevintran@aastudent.com", about: "Yooooooo", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "laurengustafson", fullName: "Lauren Gustafson", email: "laurengustafson@aastudent.com", about: "I'm kinda shy but secretly super nice", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "loganfrye", fullName: "Logan Frye", email: "loganfrye@aastudent.com", about: "No holds barred", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "melonniehicks", fullName: "Melonnie Hicks", email: "melonniehicks@aastudent.com", about: "Some info about me!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "mikesineath", fullName: "Mike Sineath", email: "mikesineath@aastudent.com", about: "Major joker here", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "nathanmac", fullName: "Nathan Mac", email: "nathanmac@aastudent.com", about: "I'm not sleeping, I'm just thinking reaaaalll hard", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "nateblaz", fullName: "Nate Blaz", email: "nateblaz@aastudent.com", about: "I love everyone!!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "nathanmount", fullName: "Nathan Mount", email: "nathanmount@aastudent.com", about: "I'm pretty secretive, but still a really cool person", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "nickkury", fullName: "Nick Kury", email: "nickkury@aastudent.com", about: "Hi!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "noahcarmichaelhitsman", fullName: "Noah Carmichael-Hitsman", email: "noahcarmichaelhitsman@aastudent.com", about: "My last name is actually a combination of mine and my wife's!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "owenbeckles", fullName: "Owen Beckles", email: "owenbeckles@aastudent.com", about: "Heeeeyyyy", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "beckychen", fullName: "Becky Chen", email: "beckychen@aastudent.com", about: "My spirit animal is Donkey Kong", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "richsupe", fullName: "Rich Supe", email: "richsupe@aastudent.com", about: "I love eating spicy food!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "ryandalton", fullName: "Ryan Dalton", email: "ryandalton@aastudent.com", about: "I still don't know how to delete that message...", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "sarahjacobs", fullName: "Sarah Jacobs", email: "sarahjacobs@aastudent.com", about: "Hi!! Nice to meet you!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "stephenchoung", fullName: "Stephen Choung", email: "stephenchoung@aastudent.com", about: "Never gonna give you up, never gonna let you down", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "sylviaonwuana", fullName: "Sylvia Onwuana", email: "sylviaonwuana@aastudent.com", about: "Heyy!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "victoriatarane", fullName: "Victoria Tarane", email: "victoriatarane@aastudent.com", about: "I eat ice-cream in the morning so my kids won't try to take it from me", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "billadams", fullName: "Bill Adams", email: "billadams@aastudent.com", about: "I love making delicious BBQ, taking photos, and torturing my friends with it", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "zachyu", fullName: "Zach Yu", email: "zachyu@aastudent.com", about: "I'm the top half of Jia Li, and I freaking love Neil Gaiman", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+      { username: "zaviarbrown", fullName: "Zaviar Brown", email: "zaviarbrown@aastudent.com", about: "I love cats!", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
+
+    ], {});
+  },
+
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.bulkDelete('Users', null, {});
+  }
+};
