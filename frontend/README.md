@@ -1,76 +1,76 @@
+# 3 fiD Huntr
 
-# Create React App Template
+\*By [Zach Yu](https://github.com/zachmyu).
 
-A no-frills template from which to create React + Redux applications with
-[Create React App](https://github.com/facebook/create-react-app).
+What is your next ThreefiD?
 
-```sh
-npx create-react-app my-app --template @appacademy/react-redux-v17 --use-npm
-```
+[Live site](https://ThreefiDHuntr.herokuapp.com/)
 
-## Available Scripts
+**Table of Contents**
 
-In the project directory, you can run:
+- [3 fiD Huntr at a Glance](https://github.com/zachmyu/ThreefiD#ThreefiD-at-a-Glance)
+- [Key Features](https://github.com/zachmyu/ThreefiD#Key-Features)
+- [Technologies Used](https://github.com/zachmyu/ThreefiD#Technologies-Used)
+- [Application Architecture](https://github.com/zachmyu/ThreefiD#Application-Architecture)
+- [Frontend Overview](https://github.com/zachmyu/ThreefiD#Frontend-Overview)
+- [Backend Overview](https://github.com/zachmyu/ThreefiD#Backend-Overview)
+- [Conclusion](https://github.com/zachmyu/ThreefiD#Conclusion)
 
-### `npm start`
+## 3 fiD Huntr at a Glance
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3 fiD Huntr is a full stack application designed for to find the best 3D printer for you, where you can read reviews, opinions, watch videos, filter by functionality, and sort by price.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The application is made with a React frontend. The backend is an Express server with a sequelize database.
 
-### `npm test`
+**Key Features**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Read various reviews contributed by users
+- Create new users and have user login with authorization
+- Tag printer types that you're interested in.
+- Boost and comment on the various printers.
 
-### `npm run build`
+![3 fiD Huntr mini-demo](/readme-assets/mini-demo.gif)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Frontend
+  - React
+  - Javascript
+  - CSS
+- Backend
+  - Express
+  - Javascript
+  - sequelize
+  - Heroku deployment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Application Architecture
 
-### `npm run eject`
+The frontend is created using Javascript, Pug, and CSS. The backend is created with Javascript and Express with a sequelize databas. The complete project is deployed to its own Heroku server.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![application architecture](/readme-assets/pixel8-architecture.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+##### Overview of application architecture
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Database schema](/readme-assets/pixel8-schema.jpeg)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+##### 3 fiD Huntr Sequelize database schema
 
-## Learn More
+## Frontend Overview
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The frontend is built based off inspiration from Product Hunt.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Styling was handled using CSS in JavaScript.
 
-### Code Splitting
+Here's an example of the user feeds home page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Home Page Example](readme-assets/home-page.png)
 
-### Analyzing the Bundle Size
+## Backend Overview
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The Express backend is a collection of RESTful routes serving data to the frontend and an interface with the sequelize database.
 
-### Making a Progressive Web App
+Seed data was hand seeded to make sure all stories and reviews are relevant.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Conclusion
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This is my very first solo project!
