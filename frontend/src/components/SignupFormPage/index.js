@@ -33,69 +33,78 @@ function SignupFormPage() {
 
   return (
     <form className='form--container' onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <label>
-        Username
-        <input
-          className="form--element--container"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Full Name
-        <input
-          className="form--element--container"
-          type="text"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Email
-        <input
-          className="form--element--container"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        About you
-        <textarea
-          className="form--text--container"
-          value={about}
-          onChange={(e) => setAbout(e.target.value)}
-        ></textarea>
-      </label>
-      <label>
-        Password
-        <input
-          className="form--element--container"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Confirm Password
-        <input
-          className="form--element--container"
-          type="text"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button className="login__button" type="submit">Log In</button>
-    </form>
+      <div className='form--element--container'>
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+        <div className='form--element-left'>
+          <label>
+            Username
+          <input
+              className="form--element"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Full Name
+          <input
+              className="form--element"
+              type="text"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Email
+            <input
+              className="form--element"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Password
+          <input
+              className="form--element"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Confirm Password
+          <input
+              className="form--element"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className='form--element-right'>
+          <label>
+            About you
+          <textarea
+              className="form--element"
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
+            />
+          </label>
+          <div className="button--container">
+            <button className="login__button" type="submit">Log In</button>
+            <button className="demo__button" type="submit">Demo</button>
+          </div>
+        </div>
+      </div>
+    </form >
   );
 }
 

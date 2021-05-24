@@ -15,7 +15,7 @@ function App() {
   return isLoaded && (
     <Switch>
       <Route exact path="/">
-        < h1 > Hello from App</h1 >
+        <h1>Hello from App</h1>
       </Route>
       <Route path="/login">
         <LoginFormPage />
