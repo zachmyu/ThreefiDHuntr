@@ -47,11 +47,11 @@ The application is made with a React frontend. The backend is an Express server 
 
 The frontend is created using Javascript, Pug, and CSS. The backend is created with Javascript and Express with a sequelize databas. The complete project is deployed to its own Heroku server.
 
-![application architecture](/readme-assets/pixel8-architecture.png)
+![application architecture](/readme-assets/ThreefiDHuntr-architecture.png)
 
 ##### Overview of application architecture
 
-![Database schema](/readme-assets/pixel8-schema.jpeg)
+![Database schema](/readme-assets/ThreefiDHuntr-schema.png)
 
 ##### 3 fiD Huntr Sequelize database schema
 
