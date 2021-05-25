@@ -18,11 +18,11 @@ module.exports = {
       },
       description: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       retailPrice: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER[8, 2]
       },
       videoUrl: {
         unique: true,

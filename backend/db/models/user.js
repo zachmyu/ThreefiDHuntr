@@ -93,7 +93,25 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function (models) {
-    // associations can be defined here
+    const boostColMap = {
+      through: 'PrinterBoosts',
+      otherKey: 'printerId',
+      foreignKey: 'userId'
+    }
+    const tagColMap = {
+      through: 'PrinterTags',
+      otherKey: 'printerId',
+      foreignKey: 'userId'
+    }
+    const ownedColMap = {
+      through: 'OwnedPrinters',
+      otherKey: 'printerId',
+      foreignKey: 'userId'
+    }
+    User.belongsToMany(models.Printer, boostColMap);
+    User.belongsToMany(models.Printer, tagColMap);
+    User.belongsToMany(models.Printer, ownedColMap);
+    User.hasMany(models.PrinterReview, { foreignKey: 'userId' });
   };
   return User;
 };
