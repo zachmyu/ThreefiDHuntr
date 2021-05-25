@@ -10,7 +10,12 @@
     "dev:frontend": "npm install --prefix frontend start",
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
-    "start": "npm start --prefix backend"
+    "start": "npm start --prefix backend",
+    "db:migrate": "heroku run npx sequelize-cli db:migrate",
+    "db:migrate:undo:all": "heroku run npx sequelize-cli db:migrate:undo:all",
+    "db:redo": "npm run db:seed:undo:all && npm run db:migrate:undo:all && npm run db:migrate && npm run db:seed:all",
+    "db:seed:all": "heroku run npx sequelize-cli db:seed:all",
+    "db:seed:undo:all": "heroku run npx sequelize-cli db:seed:undo:all"
   },
   "repository": {
     "type": "git",
