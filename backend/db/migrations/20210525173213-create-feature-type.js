@@ -9,10 +9,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       printerId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Printers' }
       },
       featureId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'FeatureTypes' }
       },
       createdAt: {
         allowNull: false,
