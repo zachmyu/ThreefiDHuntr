@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 256]
       },
     },
-    about: DataTypes.STRING,
+    about: DataTypes.TEXT,
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
       allowNull: false,
