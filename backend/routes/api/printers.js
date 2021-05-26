@@ -1,8 +1,8 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const { setTokenCookie } = require('../../utils/auth');
 const { Printer } = require('../../db/models');
+const { features } = require('../../db/models/printerfeature');
 const { handleValidationErrors } = require('../../utils/validation');
 const PrintersRepository = require('../../db/printers-repository');
 const ReviewsRepository = require('../../db/reviews-repository');
@@ -80,12 +80,15 @@ router.get('/:id/reviews', asyncHandler(async function (req, res) {
   return res.json(reviews);
 }));
 
+router.get('/features', asyncHandler(async function (_req, res) {
+  return res.json(features);
+}));
+
 //add new printer
 router.post('/', validateAdd, asyncHandler(async (req, res) => {
   const { brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus } = req.body;
   const printer = await Printer.signup({ brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus });
 
-  await setTokenCookie(res, printer);
   return res.json({ printer });
 }),
 );
@@ -94,7 +97,6 @@ router.post('/', validateAdd, asyncHandler(async (req, res) => {
 router.post('/:id', validateReview, asyncHandler(async (req, res) => {
   const review = await ReviewsRepository.addReview(req.body, req.params.id);
 
-  await setTokenCookie(res, review);
   return res.json({ review });
 }),
 );
@@ -112,6 +114,5 @@ router.delete("/:id", asyncHandler(async function (req, res) {
   const printerId = await PrintersRepository.deletePrinter(req.params.id);
   return res.json({ printerId });
 }));
-
 
 module.exports = router;
