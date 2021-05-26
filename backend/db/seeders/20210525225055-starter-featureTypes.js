@@ -2,18 +2,67 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkInsert('People', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
+    return queryInterface.bulkInsert('FeatureTypes', [
+      { printerId: 1, featureId: 1 },
+      { printerId: 1, featureId: 2 },
+      { printerId: 1, featureId: 3 },
+      { printerId: 1, featureId: 4 },
+      { printerId: 2, featureId: 1 },
+      { printerId: 2, featureId: 2 },
+      { printerId: 2, featureId: 3 },
+      { printerId: 3, featureId: 2 },
+      { printerId: 3, featureId: 4 },
+      { printerId: 3, featureId: 5 },
+      { printerId: 4, featureId: 1 },
+      { printerId: 4, featureId: 2 },
+      { printerId: 5, featureId: 3 },
+      { printerId: 5, featureId: 4 },
+      { printerId: 5, featureId: 5 },
+      { printerId: 6, featureId: 1 },
+      { printerId: 6, featureId: 2 },
+      { printerId: 7, featureId: 3 },
+      { printerId: 7, featureId: 4 },
+      { printerId: 8, featureId: 1 },
+      { printerId: 8, featureId: 3 },
+      { printerId: 8, featureId: 4 },
+      { printerId: 8, featureId: 5 },
+      { printerId: 9, featureId: 1 },
+      { printerId: 9, featureId: 3 },
+      { printerId: 9, featureId: 4 },
+      { printerId: 10, featureId: 2 },
+      { printerId: 10, featureId: 3 },
+      { printerId: 11, featureId: 1 },
+      { printerId: 11, featureId: 2 },
+      { printerId: 12, featureId: 3 },
+      { printerId: 13, featureId: 4 },
+      { printerId: 13, featureId: 1 },
+      { printerId: 14, featureId: 2 },
+      { printerId: 14, featureId: 3 },
+      { printerId: 15, featureId: 4 },
+      { printerId: 16, featureId: 1 },
+      { printerId: 16, featureId: 2 },
+      { printerId: 17, featureId: 3 },
+      { printerId: 18, featureId: 4 },
+      { printerId: 19, featureId: 5 },
+      { printerId: 20, featureId: 1 },
+      { printerId: 21, featureId: 2 },
+      { printerId: 21, featureId: 3 },
+      { printerId: 21, featureId: 4 },
+      { printerId: 22, featureId: 5 },
+      { printerId: 22, featureId: 1 },
+      { printerId: 23, featureId: 2 },
+      { printerId: 23, featureId: 3 },
+      { printerId: 23, featureId: 4 },
+      { printerId: 23, featureId: 5 },
+      { printerId: 24, featureId: 1 },
+      { printerId: 24, featureId: 2 },
+      { printerId: 24, featureId: 3 },
+      { printerId: 25, featureId: 4 },
+      { printerId: 25, featureId: 5 },
+      { printerId: 26, featureId: 1 },
+      { printerId: 26, featureId: 2 },
+    ], {});
   },
-
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('FeatureTypes', null, {});
   }

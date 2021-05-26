@@ -2,18 +2,67 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkInsert('People', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
+    return queryInterface.bulkInsert('PrinterTags', [
+      { userId: 5, printerId: 1 },
+      { userId: 5, printerId: 2 },
+      { userId: 6, printerId: 3 },
+      { userId: 6, printerId: 4 },
+      { userId: 7, printerId: 5 },
+      { userId: 8, printerId: 6 },
+      { userId: 8, printerId: 7 },
+      { userId: 9, printerId: 8 },
+      { userId: 9, printerId: 9 },
+      { userId: 10, printerId: 10 },
+      { userId: 10, printerId: 11 },
+      { userId: 11, printerId: 12 },
+      { userId: 11, printerId: 13 },
+      { userId: 12, printerId: 14 },
+      { userId: 12, printerId: 15 },
+      { userId: 13, printerId: 16 },
+      { userId: 13, printerId: 17 },
+      { userId: 14, printerId: 18 },
+      { userId: 14, printerId: 19 },
+      { userId: 15, printerId: 20 },
+      { userId: 15, printerId: 21 },
+      { userId: 16, printerId: 22 },
+      { userId: 16, printerId: 23 },
+      { userId: 17, printerId: 24 },
+      { userId: 17, printerId: 25 },
+      { userId: 18, printerId: 26 },
+      { userId: 18, printerId: 1 },
+      { userId: 19, printerId: 2 },
+      { userId: 19, printerId: 3 },
+      { userId: 20, printerId: 4 },
+      { userId: 20, printerId: 5 },
+      { userId: 21, printerId: 6 },
+      { userId: 21, printerId: 7 },
+      { userId: 22, printerId: 8 },
+      { userId: 22, printerId: 9 },
+      { userId: 23, printerId: 10 },
+      { userId: 23, printerId: 11 },
+      { userId: 24, printerId: 12 },
+      { userId: 24, printerId: 13 },
+      { userId: 25, printerId: 14 },
+      { userId: 25, printerId: 15 },
+      { userId: 26, printerId: 16 },
+      { userId: 26, printerId: 17 },
+      { userId: 27, printerId: 18 },
+      { userId: 27, printerId: 19 },
+      { userId: 28, printerId: 20 },
+      { userId: 28, printerId: 21 },
+      { userId: 29, printerId: 22 },
+      { userId: 29, printerId: 23 },
+      { userId: 30, printerId: 24 },
+      { userId: 30, printerId: 25 },
+      { userId: 31, printerId: 26 },
+      { userId: 31, printerId: 1 },
+      { userId: 32, printerId: 2 },
+      { userId: 32, printerId: 3 },
+      { userId: 33, printerId: 4 },
+      { userId: 33, printerId: 5 },
+      { userId: 34, printerId: 6 },
+    ], {});
   },
-
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('PrinterTags', null, {});
   }

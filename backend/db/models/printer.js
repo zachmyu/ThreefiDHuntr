@@ -4,26 +4,26 @@ module.exports = (sequelize, DataTypes) => {
     brand: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [2, 40],
-      },
+      // validate: {
+      //   len: [2, 40],
+      // },
     },
     model: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [2, 40],
-      },
+      // validate: {
+      //   len: [2, 40],
+      // },
     },
     description: {
       type: DataTypes.TEXT,
       allowNull: false,
-      validate: {
-        len: [2, 1000],
-      },
+      // validate: {
+      //   len: [2, 5000],
+      // },
     },
     retailPrice: {
-      type: DataTypes.INTEGER[8, 2],
+      type: DataTypes.INTEGER(8, 2),
       allowNull: false,
     },
     videoUrl: {
