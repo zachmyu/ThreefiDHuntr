@@ -1,7 +1,7 @@
 import { LOAD_REVIEWS, REMOVE_REVIEW, ADD_REVIEW } from './reviews';
 
 const LOAD = 'printers/LOAD';
-const LOAD_TYPES = 'printers/LOAD_TYPES';
+const LOAD_FEATURES = 'printers/LOAD_FEATURES';
 const ADD_ONE = 'printers/ADD_ONE';
 
 const load = list => ({
@@ -9,9 +9,9 @@ const load = list => ({
   list,
 });
 
-const loadTypes = types => ({
-  type: LOAD_TYPES,
-  types,
+const loadFeatures = features => ({
+  type: LOAD_FEATURES,
+  features,
 });
 
 const addOnePrinter = printer => ({
@@ -70,18 +70,18 @@ export const getPrinters = () => async dispatch => {
   }
 };
 
-export const getPrinterTypes = () => async dispatch => {
-  const response = await fetch(`/api/printer/types`);
+export const getPrinterFeatures = () => async dispatch => {
+  const response = await fetch(`/api/printer/features`);
 
   if (response.ok) {
-    const types = await response.json();
-    dispatch(loadTypes(types));
+    const features = await response.json();
+    dispatch(loadFeatures(features));
   }
 };
 
 const initialState = {
   list: [],
-  types: []
+  features: []
 };
 
 const sortList = (list) => {
@@ -103,10 +103,10 @@ const printerReducer = (state = initialState, action) => {
         list: sortList(action.list),
       };
     }
-    case LOAD_TYPES: {
+    case LOAD_FEATURES: {
       return {
         ...state,
-        types: action.types,
+        features: action.features,
       };
     }
     case ADD_ONE: {
