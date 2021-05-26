@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPrinter, getPrinterFeatures } from '../../store/printers';
 import { useHistory } from 'react-router-dom';
-import './SPrinterCreate.css';
+import './PrinterCreate.css';
 
 const CreatePrinterForm = () => {
   const printerFeatures = useSelector(state => state.printer.features);
@@ -47,13 +47,15 @@ const CreatePrinterForm = () => {
       features
     };
 
-    const printer = await dispatch(createPrinter(payload));
-
-
-    if (printer) {
-      history.push(`/printer/${printer.id}`);
-      // hideForm();
+    //add error validation here
+    if (!errors) {
+      const printer = await dispatch(createPrinter(payload));
+      if (printer) {
+        history.push(`/printer/${printer.id}`);
+        // hideForm();
+      }
     }
+
   };
 
   const handleCancelClick = (e) => {
