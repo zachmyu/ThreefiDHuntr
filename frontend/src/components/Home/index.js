@@ -2,49 +2,48 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 
-import PokemonDetail from './PokemonDetail';
-import CreatePokemonForm from './CreatePokemonForm';
-import Fab from './Fab';
-import { getPokemon } from '../store/pokemon';
+import PrinterPage from '../PrinterPage';
+import CreatePrinterForm from '../PrinterCreateForm';
+import { getPrinters } from '../../store/printers';
 
-const PokemonBrowser = () => {
+
+const Home = () => {
   const dispatch = useDispatch();
-  const { pokemonId } = useParams();
-  const pokemon = useSelector(state => {
-    return state.pokemon.list.map(pokemonId => state.pokemon[pokemonId]);
+  const { printerId } = useParams();
+  const printer = useSelector(state => {
+    return state.printer.list.map(printerId => state.printer[printerId]);
   });
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    dispatch(getPokemon());
+    dispatch(getPrinters());
   }, [dispatch]);
 
-  if (!pokemon) {
+  if (!printer) {
     return null;
   }
 
   return (
     <main>
       <nav>
-        <Fab hidden={showForm} onClick={() => setShowForm(true)} />
-        {pokemon.map((pokemon) => {
+        {printer.map((printer) => {
           return (
-            <NavLink key={pokemon.name} to={`/pokemon/${pokemon.id}`}>
+            <NavLink key={printer.name} to={`/printers/${printer.id}`}>
               <div
                 className={
-                  Number.parseInt(pokemonId) === pokemon.id
+                  Number.parseInt(printerId) === printer.id
                     ? "nav-entry is-selected"
                     : "nav-entry"
                 }
               >
                 <div
                   className="nav-entry-image"
-                  style={{ backgroundImage: `url('${pokemon.imageUrl}')` }}
+                  style={{ backgroundImage: `url('${printer.imageUrl}')` }}
                 ></div>
                 <div>
-                  <div className="primary-text">{pokemon.name}</div>
+                  <div className="primary-text">{printer.name}</div>
                   <div className="secondary-text">
-                    {pokemon.no} {pokemon.captured && "(Captured)"}
+                    {printer.brand} {printer.model} {printer.boosts}
                   </div>
                 </div>
               </div>
@@ -52,15 +51,15 @@ const PokemonBrowser = () => {
           );
         })}
       </nav>
-      {showForm ? (
-        <CreatePokemonForm hideForm={() => setShowForm(false)} />
+      {/* {showForm ? (
+        <CreatePrinterForm hideForm={() => setShowForm(false)} />
       ) : (
-        <Route path="/pokemon/:pokemonId">
-          <PokemonDetail />
+        <Route path="/printers/:printerId">
+          <PrinterPage />
         </Route>
-      )}
+      )} */}
     </main>
   );
 };
 
-export default PokemonBrowser;
+export default Home;
