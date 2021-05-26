@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import NaviFooter from "./components/NaviFooter";
 import Navigation from "./components/Navigation";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
@@ -25,6 +26,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <NaviFooter />
     </>
   );
 }
