@@ -21,7 +21,7 @@ const addOnePrinter = printer => ({
 
 export const createPrinter = data => async dispatch => {
   console.log(data);
-  const response = await fetch(`/api/printer`, {
+  const response = await fetch(`/api/printers`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export const createPrinter = data => async dispatch => {
 };
 
 export const updatePrinter = data => async dispatch => {
-  const response = await fetch(`/api/printer/${data.id}`, {
+  const response = await fetch(`/api/printers/${data.id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export const updatePrinter = data => async dispatch => {
 };
 
 export const getOnePrinter = id => async dispatch => {
-  const response = await fetch(`/api/printer/${id}`);
+  const response = await fetch(`/api/printers/${id}`);
 
   if (response.ok) {
     const printer = await response.json();
@@ -71,7 +71,7 @@ export const getPrinters = () => async dispatch => {
 };
 
 export const getPrinterFeatures = () => async dispatch => {
-  const response = await fetch(`/api/printer/features`);
+  const response = await fetch(`/api/features`);
 
   if (response.ok) {
     const features = await response.json();
