@@ -2,7 +2,7 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { Printer } = require('../../db/models');
-const { features } = require('../../db/models/printerfeature');
+const { PrinterFeature } = require('../../db/models/');
 const { handleValidationErrors } = require('../../utils/validation');
 const PrintersRepository = require('../../db/printers-repository');
 const ReviewsRepository = require('../../db/reviews-repository');
@@ -70,7 +70,7 @@ router.get('/', asyncHandler(async function (_req, res) {
 
 //load single printer
 router.get('/:id', asyncHandler(async function (req, res) {
-  const printer = await PrintersRepository.one(req.params.id);
+  const printer = await Printer.findByPk(req.params.id);
   return res.json(printer);
 }));
 
@@ -80,7 +80,10 @@ router.get('/:id/reviews', asyncHandler(async function (req, res) {
   return res.json(reviews);
 }));
 
-router.get('/features', asyncHandler(async function (_req, res) {
+router.get('/features', asyncHandler(async function (req, res) {
+
+  console.log('>>>>>> here')
+  const features = await PrinterFeature.findAll();
   return res.json(features);
 }));
 
