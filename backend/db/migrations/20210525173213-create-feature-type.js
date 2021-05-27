@@ -16,7 +16,7 @@ module.exports = {
       featureId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'FeatureTypes' }
+        references: { model: 'PrinterFeatures' }
       },
       createdAt: {
         allowNull: false,
