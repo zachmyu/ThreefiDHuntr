@@ -22,7 +22,7 @@ const addOnePrinter = printer => ({
 
 export const createPrinter = printer => async dispatch => {
   const { brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus } = printer
-  const response = await csrfFetch(`/api/printer`, {
+  const response = await csrfFetch(`/api/printers`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const createPrinter = printer => async dispatch => {
 };
 
 export const updatePrinter = data => async dispatch => {
-  const response = await csrfFetch(`/api/printer/${data.id}`, {
+  const response = await csrfFetch(`/api/printers/${data.id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export const updatePrinter = data => async dispatch => {
 };
 
 export const getOnePrinter = id => async dispatch => {
-  const response = await csrfFetch(`/api/printer/${id}`);
+  const response = await csrfFetch(`/api/printers/${id}`);
 
   if (response.ok) {
     const printer = await response.json();
