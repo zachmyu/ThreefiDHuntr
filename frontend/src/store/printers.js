@@ -80,7 +80,7 @@ export const getPrinters = () => async dispatch => {
 };
 
 export const getPrinterFeatures = () => async dispatch => {
-  const response = await csrfFetch(`/api/printers/features`);
+  const response = await csrfFetch(`/api/features`);
 
   if (response.ok) {
     const features = await response.json();

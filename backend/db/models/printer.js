@@ -21,11 +21,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         len: [0, 256],
-        isURL(value) {
-          if (Validator.isNotURL(value)) {
-            throw new Error('Please enter a valid URL.');
-          }
-        },
+        // isURL(value) {
+        //   if (Validator.isNotURL(value)) {
+        //     throw new Error('Please enter a valid URL.');
+        //   }
+        // },
       },
     },
     pictureUrl: {
@@ -33,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       ,
       validate: {
         len: [0, 256],
-        isURL(value) {
-          if (Validator.isNotURL(value)) {
-            throw new Error('Please enter a valid URL.');
-          }
-        },
+        // isURL(value) {
+        //   if (Validator.isNotURL(value)) {
+        //     throw new Error('Please enter a valid URL.');
+        //   }
+        // },
       },
     },
     retailStatus: {
