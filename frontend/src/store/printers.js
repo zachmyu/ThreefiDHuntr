@@ -63,9 +63,9 @@ export const updatePrinter = data => async dispatch => {
 
 export const getOnePrinter = id => async dispatch => {
   const response = await csrfFetch(`/api/printers/${id}`);
-
   if (response.ok) {
     const printer = await response.json();
+    const printerId = printer.id
     dispatch(addOnePrinter(printer));
   }
 };
