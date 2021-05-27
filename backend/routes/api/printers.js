@@ -1,7 +1,10 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const { Printer, PrinterFeature } = require('../../db/models');
+
+const { Printer } = require('../../db/models');
+const { PrinterFeature } = require('../../db/models/');
+
 const { handleValidationErrors } = require('../../utils/validation');
 const PrintersRepository = require('../../db/printers-repository');
 const ReviewsRepository = require('../../db/reviews-repository');
@@ -77,10 +80,12 @@ router.get('/:id/reviews', asyncHandler(async function (req, res) {
   return res.json(reviews);
 }));
 
-//load printer features
+
 router.get('/features', asyncHandler(async function (req, res) {
+
+  console.log('>>>>>> here')
   const features = await PrinterFeature.findAll();
-  console.log("LOLOLOLOLOLOLOLOLOLOLOLOLBIIIILLLL", features)
+
   return res.json(features);
 }));
 
