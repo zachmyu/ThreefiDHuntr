@@ -46,6 +46,7 @@ export const createPrinter = printer => async dispatch => {
 };
 
 export const updatePrinter = data => async dispatch => {
+
   const response = await csrfFetch(`/api/printer/${data.id}`, {
     method: 'put',
     headers: {
@@ -64,6 +65,7 @@ export const updatePrinter = data => async dispatch => {
 export const getOnePrinter = id => async dispatch => {
   const response = await csrfFetch(`/api/printer/${id}`);
 
+
   if (response.ok) {
     const printer = await response.json();
     dispatch(addOnePrinter(printer));
@@ -80,7 +82,9 @@ export const getPrinters = () => async dispatch => {
 };
 
 export const getPrinterFeatures = () => async dispatch => {
+
   const response = await csrfFetch(`/api/printers/features`);
+
 
   if (response.ok) {
     const features = await response.json();
