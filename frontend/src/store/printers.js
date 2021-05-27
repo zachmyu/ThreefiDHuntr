@@ -86,7 +86,7 @@ const initialState = {
 
 const sortList = (list) => {
   return list.sort((printerA, printerB) => {
-    return printerA.no - printerB.no;
+    return printerA.id - printerB.id;
   }).map((printer) => printer.id);
 };
 
