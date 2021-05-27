@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     retailPrice: {
-      type: DataTypes.INTEGER(8, 2),
+      type: DataTypes.DECIMAL(8, 2),
       allowNull: false,
     },
     videoUrl: {
