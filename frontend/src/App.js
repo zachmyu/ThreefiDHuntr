@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import NaviFooter from "./components/NaviFooter";
 import Navigation from "./components/Navigation";
 import PrinterCreateForm from "./components/PrinterCreateForm";
+import PrinterPage from "./components/PrinterPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/createPrinter">
             <PrinterCreateForm />
+          </Route>
+          <Route path="/printers/:id">
+            <PrinterPage />
           </Route>
         </Switch>
       )}
