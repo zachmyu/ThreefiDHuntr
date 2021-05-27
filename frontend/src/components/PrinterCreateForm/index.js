@@ -4,7 +4,7 @@ import { createPrinter, getPrinterFeatures } from '../../store/printers';
 import { useHistory } from 'react-router-dom';
 import './PrinterCreate.css';
 
-const CreatePrinterForm = () => {
+const PrinterCreateForm = () => {
   const printerFeatures = useSelector(state => state.printer.features);
   const printerStatus = useSelector(state => state.printer.retailStatus);
   const dispatch = useDispatch();
@@ -123,12 +123,12 @@ const CreatePrinterForm = () => {
           </label>
           <label>
             Current Retail Status
-           <select onChange={(e) => setRetailStatus(e.target.value)}
+           {/* <select onChange={(e) => setRetailStatus(e.target.value)}
               value={retailStatus}>
               {printerStatus.map(status =>
                 <option key={status}>{status}</option>
               )}
-            </select>
+            </select> */}
           </label>
           <label>
             Printer Features
@@ -165,4 +165,4 @@ const CreatePrinterForm = () => {
   );
 };
 
-export default CreatePrinterForm;
+export default PrinterCreateForm;
