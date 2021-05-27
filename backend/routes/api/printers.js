@@ -1,14 +1,11 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const { Printer } = require('../../db/models');
-const { features } = require('../../db/models/printerfeature');
+const { Printer, PrinterFeature } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 const PrintersRepository = require('../../db/printers-repository');
 const ReviewsRepository = require('../../db/reviews-repository');
 const router = express.Router();
-
-
 
 const validateAdd = [
   check('brand')
@@ -63,14 +60,14 @@ const validateReview = [
 ];
 
 //Load list of printers
-router.get('/', asyncHandler(async function (_req, res) {
-  const printers = await PrintersRepository.list();
+router.get('/', asyncHandler(async function (req, res) {
+  const printers = await Printer.findAll();
   return res.json(printers);
 }));
 
 //load single printer
 router.get('/:id', asyncHandler(async function (req, res) {
-  const printer = await PrintersRepository.one(req.params.id);
+  const printer = await Printer.findByPk(req.params.id);
   return res.json(printer);
 }));
 
@@ -80,14 +77,17 @@ router.get('/:id/reviews', asyncHandler(async function (req, res) {
   return res.json(reviews);
 }));
 
-router.get('/features', asyncHandler(async function (_req, res) {
+//load printer features
+router.get('/features', asyncHandler(async function (req, res) {
+  const features = await PrinterFeature.findAll();
+  console.log("LOLOLOLOLOLOLOLOLOLOLOLOLBIIIILLLL", features)
   return res.json(features);
 }));
 
-//add new printer
-router.post('/', validateAdd, asyncHandler(async (req, res) => {
+//add new printer validateAdd,
+router.post('/', asyncHandler(async (req, res) => {
   const { brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus } = req.body;
-  const printer = await Printer.signup({ brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus });
+  const printer = await Printer.create({ brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus });
 
   return res.json({ printer });
 }),
@@ -102,7 +102,7 @@ router.post('/:id', validateReview, asyncHandler(async (req, res) => {
 );
 
 //edit printer info
-router.put('/:id', validateUpdate, asyncHandler(async function (req, res) {
+router.patch('/:id', validateUpdate, asyncHandler(async function (req, res) {
   const id = await PrintersRepository.update(req.body);
   const printer = await PrintersRepository.one(id);
   return res.json(printer);

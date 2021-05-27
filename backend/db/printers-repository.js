@@ -1,4 +1,5 @@
 const { Printer } = require("./models");
+// const { PrinterFeature } = require("./models");
 
 async function update(printer) {
   const id = printer.id;
@@ -14,13 +15,17 @@ async function update(printer) {
   return await Printer.findByPk(id);
 }
 
-async function list() {
-  return await Printer.findAll();
-}
+// async function list() {
+//   return await Printer.findAll();
+// }
 
-async function one(id) {
-  return await Printer.scope("detailed").findByPk(id);
-}
+// async function listFeature() {
+//   return await PrinterFeature.findAll();
+// }
+
+// async function one(id) {
+//   return await Printer.findByPk(id);
+// }
 
 async function deletePrinter(printerId) {
   const printer = await Printer.findByPk(printerId);
@@ -32,7 +37,8 @@ async function deletePrinter(printerId) {
 
 module.exports = {
   update,
-  list,
-  one,
+  // list,
+  // listFeature,
+  // one,
   deletePrinter,
 };

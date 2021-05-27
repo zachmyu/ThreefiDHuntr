@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const PrinterFeature = sequelize.define('PrinterFeature', {
     features: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   }, {});
