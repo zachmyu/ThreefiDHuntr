@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { getOnePrinter } from '../../store/printers'
 import ReviewFormModal from '../ReviewFormModal';
+import './PrinterPage.css'
 
 const PrinterPage = () => {
 
@@ -36,18 +37,16 @@ const PrinterPage = () => {
   let contentPicture = null;
 
   if (printer.pictureUrl) {
+  //   contentPicture = (
+  //     <div className="printer-image" style={{ backgroundImage: `url('${printer.pictureUrl}')` }}></div>)
+  // } else {
     contentPicture = (
-      <div
-        className="printer-image" style={{ backgroundImage: `url('${printer.pictureUrl}')` }}></div>)
-  } else {
-    contentPicture = (
-      <div></div>
-    )
+      <div className="printer-image" style={{ backgroundImage: `url('/images/nessie.png')` }}></div>)
   }
 
   return (
-    <div className="printer-detail">
-      <div>
+    <div className="printer-detail-container">
+      <div className="printer-detail-card">
         {contentPicture}
         <div>
           <h1 className="printer-element">{printer.brand} {printer.model}</h1>

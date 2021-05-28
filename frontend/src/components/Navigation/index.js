@@ -14,10 +14,10 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <div>
+      <>
         <ProfileButton user={sessionUser} />
         <NavLink to="/createPrinter">Create a new printer</NavLink>
-      </div>
+      </>
     );
   } else {
     sessionLinks = (
@@ -29,12 +29,18 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <div className="navbar">
+      <div className="navbar__container">
+        <div className="navbar__element">
+          <NavLink className='navbar--element1' exact to="/">
+            <img src='/images/Logo.png' className="homepageLogo" alt="homepageLogo"></img>
+          </NavLink>
+        </div>
+        <div classname="navbar__element-links">
+          {isLoaded && sessionLinks}
+        </div>
+      </div>
+    </div>
   );
 }
 

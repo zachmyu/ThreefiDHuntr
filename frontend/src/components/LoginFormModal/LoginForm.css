@@ -1,78 +1,112 @@
-.container {
-  margin-top: -8px;
-  z-index: -88;
-  /* background-image: url("../images/animatedBackground3.gif"); */
-  image-rendering: pixelated;
-  background-size: 100%;
-  background-position-y: -388px;
-  height: 1000px;
-  width: 100%;
-  padding-top: 88px;
-}
 
-.form--container {
-  background-color: rgba(0, 0, 0, 0.85);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.login--container {
+  background-color: rgba(0, 0, 0, 0.75);
   width: 100%;
-  height: 400px;
-  color: #ffb43d;
+  height: 450px;
+  color: #4D6EF5;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: bolder;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.form--element--container {
+   flex-direction: column;
   display: flex;
   justify-content: space-between;
-  margin: 10px;
-  width: 333px;
-  /* height: 333px; */
-  /* background-color: red; */
+
+  align-items: center;
 }
 
-.form--element {
+.login--element--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 333px;
+  padding: 50px;
+  margin-top: -80px;
 }
+
+.login--element {
+  padding: 10px;
+  width: 310px;
+}
+
 input {
-  width: 226px;
-  height: 20px;
+  width: 90px;
+  height: 15px;
+  border-radius: 5px;
+  margin: 10px 0px -70px 0px;
+  align-items: center;
+
 }
+
+.login__button--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: space-around;
+  margin: 10px;
+  padding: 10px;
+}
+
 .login__button {
   width: 233px;
   color: white;
   border-radius: 10px;
-  background-color: #ffb43d;
+  background-color: #4D6EF5;
   height: 40px;
   font-size: large;
   font-weight: bold;
+  margin: 0px 10px 10px 10px;
 }
 .login__button:hover {
-  background-color: #ffcc79;
+  background-color: #4D6EF5;
 }
 .demo__button {
   width: 233px;
-  color: #ffb43d;
+  color: #4D6EF5;
   border-radius: 10px;
-  background-color: #2e2e2e;
+  background-color: #4D6EF5;
   height: 40px;
   font-size: large;
   font-weight: bold;
+  margin: 10px;
 }
 .demo__button:hover {
   background-color: #424242;
-}
-
-a:visited,
-a:hover,
-a:active,
-a:link {
-  color: #ffb43d;
-  text-decoration: none;
-}
-a:hover {
-  color: #ffffff;
 }
 
 h1 {
@@ -80,7 +114,7 @@ h1 {
   font-weight: bold;
   margin: 0;
 }
-p {
+/* p {
   margin: 0;
 }
 h2 {
@@ -90,4 +124,4 @@ h2 {
 }
 li {
   color: red;
-}
+} */

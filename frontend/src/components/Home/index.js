@@ -26,30 +26,33 @@ const Home = () => {
   return (
     <main>
       <nav>
-        {printer.map((printer) => {
-          return (
-            <NavLink key={printer.name} to={`/printers/${printer.id}`}>
-              <div
-                className={
+        <div className="card-container">
+          {printer.map((printer) => {
+            return (
+              <div className="printer-card">
+                <NavLink key={printer.name} to={`/printers/${printer.id}`}>
+                <div className={
                   Number.parseInt(printerId) === printer.id
                     ? "nav-entry is-selected"
                     : "nav-entry"
-                }
-              >
-                <div
-                  className="nav-entry-image"
-                  style={{ backgroundImage: `url('${printer.imageUrl}')` }}
-                ></div>
-                <div>
-                  <div className="primary-text">{printer.name}</div>
-                  <div className="secondary-text">
-                    {printer.brand} {printer.model} {printer.boosts}
+                  }>
+                <div className="nav-entry-image"
+                  style={{backgroundImage: `url('/images/nessie.png')`}}></div>
+                  {/* <div
+                    className="nav-entry-image"
+                    style={{backgroundImage: `url('${printer.imageUrl}')`}}
+                  ></div> */}
+                  <div className="nav-text">
+                    <div className="primary-text">{printer.brand} {printer.model}</div>
+                    <div className="secondary-text">{printer.boosts} Retail price: ${printer.retailPrice} Status:{printer.retailStatus}</div>
                   </div>
                 </div>
+                </NavLink>
               </div>
-            </NavLink>
-          );
-        })}
+            );
+          })
+        }
+        </div>
       </nav>
       {/* {showForm ? (
         <CreatePrinterForm hideForm={() => setShowForm(false)} />
