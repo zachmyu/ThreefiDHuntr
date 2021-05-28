@@ -12,7 +12,6 @@ const PrinterPage = () => {
   const sessionUser = useSelector((state) => state.session)
   const history = useHistory();
   const [showEditPrinterForm, setShowEditPrinterForm] = useState(false);
-  console.log("PRRRIINNNTTEERRR", printer)
 
   useEffect(() => {
     dispatch(getOnePrinter(id));

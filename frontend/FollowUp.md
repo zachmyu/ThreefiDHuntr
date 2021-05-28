@@ -11,6 +11,7 @@ User Detail
 CSS
 Update seeders with proper pictures
 Embed video on printer page
+https://react.tips/checkboxes-in-react-16/ <-- Check marks for user function selection
 
 ---
 
