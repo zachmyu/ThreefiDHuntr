@@ -29,20 +29,21 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <>
-      <button style={{ backgroundColor: "Transparent", backgroundImage: "url(/images/profile.png)", backgroundSize: "50px", width: "50px", height: "50px", border: "none" }} onClick={openMenu}>
-
+    <div>
+      <button
+        class="navbar__links"
+        style={{ backgroundColor: "Transparent", backgroundImage: "url(/images/profile.png)", backgroundSize: "50px", width: "50px", height: "50px", border: "none" }}
+        onClick={openMenu}>
       </button>
       {showMenu && (
         <div className="profile-dropdown">
-          <div></div>
           <div>
             <a href={`/users/${user.id}`}>{user.username}</a></div>
           <div> <button onClick={logout}>Log Out</button> </div>
 
         </div>
       )}
-    </>
+    </div>
   );
 }
 

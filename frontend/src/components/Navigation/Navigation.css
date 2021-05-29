@@ -6,13 +6,8 @@
   right: 0px;
   position: fixed;
   display: flex;
+  justify-content: space-between;
 
-  /* position: absolute; */
-  /* background-repeat: repeat-x; */
-  /* background-position: bottom; */
-  /* position: fixed;
-  width: 100%;
-  top: 0; */
   /*
   background-color: dimgrey;
   height: 229px;
@@ -34,10 +29,10 @@
   transition: all 0.25s ease-in-out;
 } */
 
-.navbar__element-links {
-  padding-left: 800px;
-  flex-direction: row;
-  align-self: flex-start;
+.navbar__links {
+  flex-direction: column;
+  align-self: space-between;
+  justify-content: flex-end;
 }
 
 .profile-dropdown {
