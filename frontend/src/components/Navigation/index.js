@@ -16,14 +16,22 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <div>
         <ProfileButton user={sessionUser} />
-        <NavLink to="/createPrinter">Create a new printer</NavLink>
+        <NavLink to="/createPrinter">
+          <button type="button">
+            Create a new printer
+          </button>
+        </NavLink>
       </div>
     );
   } else {
     sessionLinks = (
       <div>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/signup">
+          <button type="button">
+            Sign Up
+          </button>
+        </NavLink>
       </div>
     );
   }
