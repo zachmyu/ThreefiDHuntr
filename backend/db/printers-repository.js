@@ -14,9 +14,9 @@ async function update(printer) {
   return await Printer.findByPk(id);
 }
 
-async function list() {
-  return await Printer.findAll();
-}
+// async function list() {
+//   return await Printer.findAll();
+// }
 
 async function one(id) {
   return await Printer.scope("detailed").findByPk(id);
@@ -32,7 +32,7 @@ async function deletePrinter(printerId) {
 
 module.exports = {
   update,
-  list,
+  // list,
   one,
   deletePrinter,
 };

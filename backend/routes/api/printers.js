@@ -63,10 +63,16 @@ const validateReview = [
 ];
 
 //Load list of printers
+// router.get('/', asyncHandler(async function (_req, res) {
+//   const printers = await PrintersRepository.list();
+//   return res.json(printers);
+// }));
+
 router.get('/', asyncHandler(async function (_req, res) {
-  const printers = await PrintersRepository.list();
+  const printers = await Printer.findAll();
   return res.json(printers);
 }));
+
 
 //load single printer
 router.get('/:id', asyncHandler(async function (req, res) {
