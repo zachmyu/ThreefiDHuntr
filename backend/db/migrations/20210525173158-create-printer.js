@@ -22,7 +22,7 @@ module.exports = {
       },
       retailPrice: {
         allowNull: false,
-        type: Sequelize.INTEGER(8, 2)
+        type: Sequelize.DECIMAL(8, 2)
       },
       videoUrl: {
         unique: true,

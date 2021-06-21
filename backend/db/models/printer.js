@@ -14,18 +14,18 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     retailPrice: {
-      type: DataTypes.INTEGER(8, 2),
+      type: DataTypes.DECIMAL(8, 2),
       allowNull: false,
     },
     videoUrl: {
       type: DataTypes.STRING,
       validate: {
         len: [0, 256],
-        isURL(value) {
-          if (Validator.isNotURL(value)) {
-            throw new Error('Please enter a valid URL.');
-          }
-        },
+        // isURL(value) {
+        //   if (Validator.isNotURL(value)) {
+        //     throw new Error('Please enter a valid URL.');
+        //   }
+        // },
       },
     },
     pictureUrl: {
@@ -33,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       ,
       validate: {
         len: [0, 256],
-        isURL(value) {
-          if (Validator.isNotURL(value)) {
-            throw new Error('Please enter a valid URL.');
-          }
-        },
+        // isURL(value) {
+        //   if (Validator.isNotURL(value)) {
+        //     throw new Error('Please enter a valid URL.');
+        //   }
+        // },
       },
     },
     retailStatus: {

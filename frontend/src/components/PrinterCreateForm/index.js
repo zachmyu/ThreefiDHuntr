@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import * as printerActions from '../../store/printers';
 import { useDispatch, useSelector } from 'react-redux';
-import { createPrinter, getPrinterFeatures } from '../../store/printers';
 import { useHistory } from 'react-router-dom';
-import './SPrinterCreate.css';
+import './PrinterCreate.css';
 
-const CreatePrinterForm = () => {
-  const printerFeatures = useSelector(state => state.printer.features);
-  const printerStatus = useSelector(state => state.printer.retailStatus);
+// if (printer) {
+//   history.push(`/printer/${printer.id}`);
+// }
+
+const PrinterCreateForm = () => {
+  // const printerFeatures = useSelector(state => state.printer.features);
+  // const printerStatus = useSelector(state => state.printer.retailStatus);
   const dispatch = useDispatch();
   const history = useHistory();
+  const sessionUser = useSelector(state => state.session.user);
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
   const [description, setDescription] = useState('');
@@ -16,45 +21,53 @@ const CreatePrinterForm = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const [pictureUrl, setPictureUrl] = useState('');
   const [retailStatus, setRetailStatus] = useState('');
-  const [features, setFeatures] = useState('')
+  const [features, setFeatures] = useState([])
   const [errors, setErrors] = useState([]);
 
-  const updateRetailStatus = (e) => setRetailStatus(e.target.value);
-  const updateFeatures = (e) => setFeatures(e.target.value);
+  // const updateRetailStatus = (e) => setRetailStatus(e.target.value);
+  // const updateFeatures = (e) => setFeatures(e.target.value);
 
+  if (!sessionUser) history.push('/');
 
   useEffect(() => {
-    dispatch(getPrinterFeatures());
+    dispatch(printerActions.getPrinterFeatures());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (printerFeatures.length && !feature) {
-  //     setFeature(printerFeatures[0]);
-  //   }
-  // }, [printerFeatures, features]);
+  //Function to change selected check boxes into an array
+  const featureSelect = useSelector((state) => Array.from(state.printer.features))
+
+  const handleCheckbox = (e) => {
+    let id = e.target.value;
+    if (features.includes(id)) {
+      let indexOfId = features.indexOf(id)
+      let copy = [...features];
+      copy.splice(indexOfId, 1);
+      setFeatures(copy);
+    } else {
+      setFeatures([...features, id])
+    }
+  }
+
+  //Need to try and get this working... map the features from set features and make it into an object?
+  //I want to add it to join table featuretypes, where id = current created printer, and features is id from array created.
+  // const featureSubmit = setFeatures().map(feature => {
+  //   console.log("FEAAAAAAAAATTTTTTUUUUUUURRRRRRRE", feature)
+  // })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //!!!!!!!how do I add error checking??
-    const payload = {
-      brand,
-      model,
-      description,
-      retailPrice,
-      videoUrl,
-      pictureUrl,
-      retailStatus,
-      features
-    };
 
-    const printer = await dispatch(createPrinter(payload));
+    setErrors([]);
+    dispatch(printerActions.createPrinter({ brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus }))
+      .then(history.push(`/`))
+      // .then(history.push(`/printer/${data.id}`))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
+  }
 
 
-    if (printer) {
-      history.push(`/printer/${printer.id}`);
-      // hideForm();
-    }
-  };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
@@ -121,27 +134,22 @@ const CreatePrinterForm = () => {
           </label>
           <label>
             Current Retail Status
-           <select onChange={(e) => setRetailStatus(e.target.value)}
+           {/* <select onChange={(e) => setRetailStatus(e.target.value)}
               value={retailStatus}>
               {printerStatus.map(status =>
                 <option key={status}>{status}</option>
-              )}
-            </select>
+                )}
+              </select> */}
           </label>
           <label>
             Printer Features
-            <div className="form--element">
-              <input type="checkbox" id="feature1" name="feature1" onChange={(e) => setFeatures(e.target.value)} />
-              <label for="feature1">Feature 1</label>
-              <input type="checkbox" id="feature2" name="feature2" onChange={(e) => setFeatures(e.target.value)} />
-              <label for="feature2">Feature 2</label>
-              <input type="checkbox" id="feature3" name="feature3" onChange={(e) => setFeatures(e.target.value)} />
-              <label for="feature3">Feature 3</label>
-              <input type="checkbox" id="feature4" name="feature4" onChange={(e) => setFeatures(e.target.value)} />
-              <label for="feature4">Feature 4</label>
-              <input type="checkbox" id="feature5" name="feature5" onChange={(e) => setFeatures(e.target.value)} />
-              <label for="feature5">Feature 5</label>
-            </div>
+              <ul className="form--element">{featureSelect?.map((feature) =>
+            <li key={feature.id}>
+              <input type="checkbox" id={feature.id} name={feature.features} value={feature.id} onChange={(e) => handleCheckbox(e)} />
+              <label htmlFor={feature.features}>{feature.features}</label>
+            </li>
+          )}
+            </ul>
           </label>
         </div>
         <div className='form--element-right'>
@@ -163,4 +171,5 @@ const CreatePrinterForm = () => {
   );
 };
 
-export default CreatePrinterForm;
+
+export default PrinterCreateForm;

@@ -1,0 +1,46 @@
+.navbar {
+  background-image: url("banner.jpg");
+  z-index: 10;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+
+  /*
+  background-color: dimgrey;
+  height: 229px;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  width: 100%;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; */
+}
+
+/* .navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 160px;
+  background-color: rgba(84, 84, 84, 0);
+  transition: all 0.25s ease-in-out;
+} */
+
+.navbar__links {
+  flex-direction: column;
+  align-self: space-between;
+  justify-content: flex-end;
+}
+
+.profile-dropdown {
+  padding-left: 800px;
+  flex-direction: row;
+  align-self: flex-start;
+}
+
+.homepageLogo {
+  padding-left: 20px;
+}

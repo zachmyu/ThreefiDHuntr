@@ -29,20 +29,21 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div>
+      <button
+        class="navbar__links"
+        style={{ backgroundColor: "Transparent", backgroundImage: "url(/images/profile.png)", backgroundSize: "50px", width: "50px", height: "50px", border: "none" }}
+        onClick={openMenu}>
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div className="profile-dropdown">
+          <div>
+            <a href={`/users/${user.id}`}>{user.username}</a></div>
+          <div> <button onClick={logout}>Log Out</button> </div>
+
+        </div>
       )}
-    </>
+    </div>
   );
 }
 

@@ -1,3 +1,4 @@
+import { csrfFetch } from './csrf';
 import { LOAD_REVIEWS, REMOVE_REVIEW, ADD_REVIEW } from './reviews';
 
 const LOAD = 'printers/LOAD';
@@ -19,14 +20,22 @@ const addOnePrinter = printer => ({
   printer,
 });
 
-export const createPrinter = data => async dispatch => {
-  console.log(data);
-  const response = await fetch(`/api/printer`, {
-    method: 'post',
+export const createPrinter = printer => async dispatch => {
+  const { brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus } = printer
+  const response = await csrfFetch(`/api/printers`, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify({
+      brand,
+      model,
+      description,
+      retailPrice,
+      videoUrl,
+      pictureUrl,
+      retailStatus,
+    }),
   });
 
   if (response.ok) {
@@ -37,7 +46,7 @@ export const createPrinter = data => async dispatch => {
 };
 
 export const updatePrinter = data => async dispatch => {
-  const response = await fetch(`/api/printer/${data.id}`, {
+  const response = await csrfFetch(`/api/printers/${data.id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json',
@@ -53,16 +62,16 @@ export const updatePrinter = data => async dispatch => {
 };
 
 export const getOnePrinter = id => async dispatch => {
-  const response = await fetch(`/api/printer/${id}`);
-
+  const response = await csrfFetch(`/api/printers/${id}`);
   if (response.ok) {
     const printer = await response.json();
+    const printerId = printer.id
     dispatch(addOnePrinter(printer));
   }
 };
 
 export const getPrinters = () => async dispatch => {
-  const response = await fetch(`/api/printers`);
+  const response = await csrfFetch(`/api/printers`);
 
   if (response.ok) {
     const list = await response.json();
@@ -71,7 +80,7 @@ export const getPrinters = () => async dispatch => {
 };
 
 export const getPrinterFeatures = () => async dispatch => {
-  const response = await fetch(`/api/printer/features`);
+  const response = await csrfFetch(`/api/features`);
 
   if (response.ok) {
     const features = await response.json();
@@ -86,7 +95,7 @@ const initialState = {
 
 const sortList = (list) => {
   return list.sort((printerA, printerB) => {
-    return printerA.no - printerB.no;
+    return printerA.id - printerB.id;
   }).map((printer) => printer.id);
 };
 

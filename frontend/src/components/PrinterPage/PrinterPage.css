@@ -1,0 +1,42 @@
+.printer-detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.printer-detail-card{
+  background-color: rgba(255,255,255,0.5);
+  width: 600px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin: 40px;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 160px;
+
+}
+
+h1{
+  font-family:Helvetica;
+}
+
+p{
+  font-family:Helvetica;
+  color: #4D6EF5;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+button {
+   width: 233px;
+  color: #4D6EF5;
+  border-radius: 10px;
+  background-color: #2e2e2e;
+  height: 40px;
+  font-size: large;
+  font-weight: bold;
+}

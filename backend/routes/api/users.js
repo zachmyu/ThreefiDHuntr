@@ -2,9 +2,8 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { setTokenCookie } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, PrinterReview } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
-const UsersRepository = require('../../db/users-repository');
 const ReviewsRepository = require('../../db/reviews-repository');
 const router = express.Router();
 
@@ -52,19 +51,19 @@ const validateUpdate = [
 
 //Load list of users
 router.get('/', asyncHandler(async function (_req, res) {
-  const users = await UsersRepository.list();
+  const users = await User.findAll();
   return res.json(users);
 }));
 
 //load single user
 router.get('/:id', asyncHandler(async function (req, res) {
-  const user = await UsersRepository.one(req.params.id);
+  const user = await User.findByPk(req.params.id);
   return res.json(user);
 }));
 
 //load user's comments
 router.get('/:id/reviews', asyncHandler(async function (req, res) {
-  const reviews = await ReviewsRepository.reviewsByUserId(req.params.id);
+  const reviews = await PrinterReview.findAll({ where: { userId: req.params.id } });
   return res.json(reviews);
 }));
 
@@ -80,15 +79,15 @@ router.post('/', validateSignup, asyncHandler(async (req, res) => {
 
 //edit user info
 router.put('/:id', validateUpdate, asyncHandler(async function (req, res) {
-  const id = await UsersRepository.update(req.body);
-  const user = await UsersRepository.one(id);
+  await User.update(req.body, { where: { id: req.params.id } });
+  const user = await User.findByPk(req.params.id)
   return res.json(user);
 })
 );
 
 //delete user
 router.delete("/:id", asyncHandler(async function (req, res) {
-  const userId = await UsersRepository.deleteUser(req.params.id);
+  const userId = await User.destroy({ where: { id: req.params.id } });
   return res.json({ userId });
 }));
 

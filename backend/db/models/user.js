@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       defaultScope: {
         attributes: {
-          exclude: ['hashedPassword', 'email', 'email', 'fullName', 'createdAt', 'updatedAt'],
+          exclude: ['hashedPassword', 'createdAt', 'updatedAt'],
         },
       },
       scopes: {
@@ -56,8 +56,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
   User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function
-    const { id, username, email } = this; // context will be the User instance
-    return { id, username, email };
+    const { id, username, email, fullName, about } = this; // context will be the User instance
+    return { id, username, email, fullName, about };
   };
   User.prototype.validatePassword = function (password) {
     return bcrypt.compareSync(password, this.hashedPassword.toString());
