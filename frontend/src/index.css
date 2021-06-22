@@ -16,11 +16,12 @@ body{
 }
 
 .printer-card{
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255,255,255,0.2);
     width: 600px;
     height: 150px;
     display: flex;
-    justify-content: center;;
+    justify-content: space-evenly;
+    align-items: center;
     margin: 40px;
     border-radius: 20px;
     padding: 10px;
@@ -30,9 +31,13 @@ body{
     opacity: 1;
 }
 
-.nav-entry-image{
+.printer-thumbnail-image{
     width: 100px;
     height: 100px;
+    box-shadow: 0 8px 8px 0 rgba(255,255,255,0.6);
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
 }
 
 .secondary-text{
@@ -48,7 +53,7 @@ a:link {
     text-decoration: none;
 }
 a:hover {
-    color: #ffffff;
+    color: #0d3dff;
 }
 
 /* body{

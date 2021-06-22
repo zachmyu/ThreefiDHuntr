@@ -31,7 +31,7 @@ function ProfileButton({ user }) {
     return (
         <div>
             <button
-                    class="navbar__links"
+                    className="navbar__links"
                     style={{ backgroundColor: "Transparent", backgroundImage: "url(/images/profile.png)", backgroundSize: "50px", width: "50px", height: "50px", border: "none" }}
                     onClick={openMenu}>
             </button>
