@@ -14,6 +14,9 @@ Embed video on printer page
 https://react.tips/checkboxes-in-react-16/ <-- Check marks for user function selection
 
 
+Misc:
+    - How do I load pictures from public folder, i/o in each component folder?
+
 Splash (Home Page)
     - Fit Media Screen
     - Side Bar
