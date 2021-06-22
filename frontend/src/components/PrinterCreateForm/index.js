@@ -56,11 +56,19 @@ const PrinterCreateForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         setErrors([]);
-        dispatch(printerActions.createPrinter({ brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus }))
+        dispatch(printerActions.createPrinter({
+            brand,
+            model,
+            description,
+            retailPrice,
+            videoUrl,
+            pictureUrl,
+            retailStatus
+        }))
             .then(history.push(`/`))
             // .then(history.push(`/printer/${data.id}`))
+            //how do I reroute it to the new created page?
             .catch(async (res) => {
                     const data = await res.json();
                     if (data && data.errors) setErrors(data.errors);

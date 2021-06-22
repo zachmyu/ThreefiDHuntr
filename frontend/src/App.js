@@ -20,25 +20,25 @@ function App() {
     return (
         <>
             <Navigation isLoaded={isLoaded} />
-            {isLoaded && (
-                <Switch>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route path="/signup">
-                        <SignupFormPage />
-                    </Route>
-                    <Route path="/createPrinter">
-                        <PrinterCreateForm />
-                    </Route>
-                    <Route path="/printers/:id">
-                        <PrinterPage />
-                    </Route>
-                    <Route path="/users/:id">
-                        <UserPage />
-                    </Route>
-                </Switch>
-            )}
+                {isLoaded && (
+                    <Switch>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route path="/signup">
+                            <SignupFormPage />
+                        </Route>
+                        <Route path="/createPrinter">
+                            <PrinterCreateForm />
+                        </Route>
+                        <Route path="/printers/:id">
+                            <PrinterPage />
+                        </Route>
+                        <Route path="/users/:id">
+                            <UserPage />
+                        </Route>
+                    </Switch>
+                )}
             <NaviFooter />
         </>
     );

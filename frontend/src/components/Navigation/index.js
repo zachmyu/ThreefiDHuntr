@@ -43,7 +43,7 @@ function Navigation({ isLoaded }) {
                     <img src='/images/Logo.png' className="homepageLogo" alt="homepageLogo"></img>
                 </NavLink>
             </div>
-            <div classname="navbar__element-links">
+            <div className="navbar__element-links">
                 {isLoaded && sessionLinks}
             </div>
         </div>
