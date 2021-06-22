@@ -10,85 +10,83 @@ const router = express.Router();
 
 
 const validateSignup = [
-  check('username')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
-  check('username')
-    .not()
-    .isEmail()
-    .withMessage('Username cannot be an email.'),
-  check('fullName')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 2 })
-    .withMessage('Please add a name with at least 2 characters.'),
-  check('email')
-    .exists({ checkFalsy: true })
-    .isEmail()
-    .withMessage('Please provide a valid email.'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 6 })
-    .withMessage('Password must be 6 characters or more.'),
-  handleValidationErrors,
+    check('username')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 4 })
+        .withMessage('Please provide a username with at least 4 characters.'),
+    check('username')
+        .not()
+        .isEmail()
+        .withMessage('Username cannot be an email.'),
+    check('fullName')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 2 })
+        .withMessage('Please add a name with at least 2 characters.'),
+    check('email')
+        .exists({ checkFalsy: true })
+        .isEmail()
+        .withMessage('Please provide a valid email.'),
+    check('password')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 6 })
+        .withMessage('Password must be 6 characters or more.'),
+    handleValidationErrors,
 ];
 
 const validateUpdate = [
-  check('fullName')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 2 })
-    .withMessage('Please add a name with at least 2 characters.'),
-  check('email')
-    .exists({ checkFalsy: true })
-    .isEmail()
-    .withMessage('Please provide a valid email.'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 6 })
-    .withMessage('Password must be 6 characters or more.'),
-  handleValidationErrors,
+    check('fullName')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 2 })
+        .withMessage('Please add a name with at least 2 characters.'),
+    check('email')
+        .exists({ checkFalsy: true })
+        .isEmail()
+        .withMessage('Please provide a valid email.'),
+    check('password')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 6 })
+        .withMessage('Password must be 6 characters or more.'),
+    handleValidationErrors,
 ];
 
 //Load list of users
 router.get('/', asyncHandler(async function (_req, res) {
-  const users = await User.findAll();
-  return res.json(users);
+    const users = await User.findAll();
+    return res.json(users);
 }));
 
 //load single user
 router.get('/:id', asyncHandler(async function (req, res) {
-  const user = await User.findByPk(req.params.id);
-  return res.json(user);
+    const user = await User.findByPk(req.params.id);
+    return res.json(user);
 }));
 
 //load user's comments
 router.get('/:id/reviews', asyncHandler(async function (req, res) {
-  const reviews = await PrinterReview.findAll({ where: { userId: req.params.id } });
-  return res.json(reviews);
+    const reviews = await PrinterReview.findAll({ where: { userId: req.params.id } });
+    return res.json(reviews);
 }));
 
 //add new user
 router.post('/', validateSignup, asyncHandler(async (req, res) => {
-  const { username, fullName, email, about, password } = req.body;
-  const user = await User.signup({ username, fullName, email, about, password });
+    const { username, fullName, email, about, password } = req.body;
+    const user = await User.signup({ username, fullName, email, about, password });
 
-  await setTokenCookie(res, user);
-  return res.json({ user });
-}),
-);
+    await setTokenCookie(res, user);
+    return res.json({ user });
+}));
 
 //edit user info
 router.put('/:id', validateUpdate, asyncHandler(async function (req, res) {
-  await User.update(req.body, { where: { id: req.params.id } });
-  const user = await User.findByPk(req.params.id)
-  return res.json(user);
-})
-);
+    await User.update(req.body, { where: { id: req.params.id } });
+    const user = await User.findByPk(req.params.id)
+    return res.json(user);
+}));
 
 //delete user
 router.delete("/:id", asyncHandler(async function (req, res) {
-  const userId = await User.destroy({ where: { id: req.params.id } });
-  return res.json({ userId });
+    const userId = await User.destroy({ where: { id: req.params.id } });
+    return res.json({ userId });
 }));
 
 

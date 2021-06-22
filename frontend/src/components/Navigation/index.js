@@ -9,45 +9,45 @@ import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
-  const sessionUser = useSelector(state => state.session.user);
+    const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <div>
-        <ProfileButton user={sessionUser} />
-        <NavLink to="/createPrinter">
-          <button type="button">
-            Create a new printer
-          </button>
-        </NavLink>
-      </div>
-    );
-  } else {
-    sessionLinks = (
-      <div>
-        <LoginFormModal />
-        <NavLink to="/signup">
-          <button type="button">
-            Sign Up
-          </button>
-        </NavLink>
-      </div>
-    );
-  }
+    let sessionLinks;
+    if (sessionUser) {
+        sessionLinks = (
+            <div>
+                <ProfileButton user={sessionUser} />
+                <NavLink to="/createPrinter">
+                    <button type="button">
+                        Create a new printer
+                    </button>
+                </NavLink>
+            </div>
+        );
+    } else {
+        sessionLinks = (
+            <div>
+                <LoginFormModal />
+                <NavLink to="/signup">
+                    <button type="button">
+                        Sign Up
+                    </button>
+                </NavLink>
+            </div>
+        );
+    }
 
-  return (
-    <div className="navbar">
-      <div className="navbar__element">
-        <NavLink className='navbar--element1' exact to="/">
-          <img src='/images/Logo.png' className="homepageLogo" alt="homepageLogo"></img>
-        </NavLink>
-      </div>
-      <div classname="navbar__element-links">
-        {isLoaded && sessionLinks}
-      </div>
-    </div>
-  );
+    return (
+        <div className="navbar">
+            <div className="navbar__element">
+                <NavLink className='navbar--element1' exact to="/">
+                    <img src='/images/Logo.png' className="homepageLogo" alt="homepageLogo"></img>
+                </NavLink>
+            </div>
+            <div classname="navbar__element-links">
+                {isLoaded && sessionLinks}
+            </div>
+        </div>
+    );
 }
 
 export default Navigation;

@@ -3,18 +3,18 @@
 // import ProfileUpdate from './ProfileUpdateModal';
 
 // function ProfileUpdateModal() {
-//   const [showModal, setShowModal] = useState(false);
+//     const [showModal, setShowModal] = useState(false);
 
-//   return (
-//     <>
-//       <button onClick={() => setShowModal(true)}>Edit Profile!</button>
-//       {showModal && (
-//         <Modal onClose={() => setShowModal(false)}>
-//           <ProfileUpdate />
-//         </Modal>
-//       )}
-//     </>
-//   );
+//     return (
+//         <>
+//             <button onClick={() => setShowModal(true)}>Edit Profile!</button>
+//             {showModal && (
+//                 <Modal onClose={() => setShowModal(false)}>
+//                     <ProfileUpdate />
+//                 </Modal>
+//             )}
+//         </>
+//     );
 // }
 
 // export default ProfileUpdateModal;

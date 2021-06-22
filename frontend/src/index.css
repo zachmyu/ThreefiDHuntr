@@ -1,56 +1,56 @@
 /* TODO Add site wide styles */
 body{
-  background-image: url("splash-background.jpg");
-  Background-attachment: fixed;
-  /* background-size: cover; */
-  z-index: -10;
-  margin-top: 160px;
-  padding: 0;
+    background-image: url("splash-background.jpg");
+    Background-attachment: fixed;
+    /* background-size: cover; */
+    z-index: -10;
+    margin-top: 160px;
+    padding: 0;
 }
 
 .card-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .printer-card{
-  background-color: rgba(255,255,255,0.3);
-  width: 600px;
-  height: 150px;
-  display: flex;
-  justify-content: center;;
-  margin: 40px;
-  border-radius: 20px;
-  padding: 10px;
+    background-color: rgba(255,255,255,0.3);
+    width: 600px;
+    height: 150px;
+    display: flex;
+    justify-content: center;;
+    margin: 40px;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .card-container:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .nav-entry-image{
-  width: 100px;
-  height: 100px;
+    width: 100px;
+    height: 100px;
 }
 
 .secondary-text{
-  font-size: 20px;
+    font-size: 20px;
 }
 
 a:visited,
 a:active,
 a:link {
-  font-family: Helvetica;
-  font-size: 1.5em;
-  color: #4D6EF5;
-  text-decoration: none;
+    font-family: Helvetica;
+    font-size: 1.5em;
+    color: #4D6EF5;
+    text-decoration: none;
 }
 a:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 /* body{
-  background-color:
+    background-color:
 } */

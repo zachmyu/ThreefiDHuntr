@@ -1,13 +1,13 @@
 .footer-container {
-  background-color: black;
-  height: 50px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0px 50px;
-  color: blue;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  position: fixed;
+    background-color: black;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px 50px;
+    color: blue;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    position: fixed;
 }

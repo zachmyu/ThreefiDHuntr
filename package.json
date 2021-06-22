@@ -1,31 +1,31 @@
 {
-  "name": "ThreefiDHuntr",
-  "version": "1.0.0",
-  "description": "###By [Zach Yu](https://github.com/zachmyu).",
-  "main": "index.js",
-  "scripts": {
-    "heroku-postbuild": "npm run build --prefix frontend",
-    "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
-    "dev:backend": "npm install --prefix backend start",
-    "dev:frontend": "npm install --prefix frontend start",
-    "sequelize": "npm run --prefix backend sequelize",
-    "sequelize-cli": "npm run --prefix backend sequelize-cli",
-    "start": "npm start --prefix backend",
-    "db:migrate": "heroku run npx sequelize-cli db:migrate",
-    "db:migrate:undo:all": "heroku run npx sequelize-cli db:migrate:undo:all",
-    "db:redo": "npm run db:seed:undo:all && npm run db:migrate:undo:all && npm run db:migrate && npm run db:seed:all",
-    "db:seed:all": "heroku run npx sequelize-cli db:seed:all",
-    "db:seed:undo:all": "heroku run npx sequelize-cli db:seed:undo:all"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zachmyu/ThreefiDHuntr.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zachmyu/ThreefiDHuntr/issues"
-  },
-  "homepage": "https://github.com/zachmyu/ThreefiDHuntr#readme"
+	"name": "ThreefiDHuntr",
+	"version": "1.0.0",
+	"description": "###By [Zach Yu](https://github.com/zachmyu).",
+	"main": "index.js",
+	"scripts": {
+		"heroku-postbuild": "npm run build --prefix frontend",
+		"install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
+		"dev:backend": "npm install --prefix backend start",
+		"dev:frontend": "npm install --prefix frontend start",
+		"sequelize": "npm run --prefix backend sequelize",
+		"sequelize-cli": "npm run --prefix backend sequelize-cli",
+		"start": "npm start --prefix backend",
+		"db:migrate": "heroku run npx sequelize-cli db:migrate",
+		"db:migrate:undo:all": "heroku run npx sequelize-cli db:migrate:undo:all",
+		"db:redo": "npm run db:seed:undo:all && npm run db:migrate:undo:all && npm run db:migrate && npm run db:seed:all",
+		"db:seed:all": "heroku run npx sequelize-cli db:seed:all",
+		"db:seed:undo:all": "heroku run npx sequelize-cli db:seed:undo:all"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/zachmyu/ThreefiDHuntr.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/zachmyu/ThreefiDHuntr/issues"
+	},
+	"homepage": "https://github.com/zachmyu/ThreefiDHuntr#readme"
 }

@@ -63,8 +63,6 @@ module.exports = {
 			{ username: "Groooooot", fullName: "Vin Diesel", email: "vindiesel@hollywoodstar.com", about: "It's insecurity that is always chasing you and standing in the way of your dreams.", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
 			{ username: "FreshPrince", fullName: "Will Smith", email: "willsmith@hollywoodstar.com", about: "Don't chase people. Be yourself, do your own thing and work hard. The right people - the ones who really belong in your life - will come to you. And Stay.", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
 			{ username: "NoMoreDisney", fullName: "Zac Efron", email: "zacefron@hollywoodstar.com", about: "When you're young everything feels like the end of the world, but its not; its just the beginning.", hashedPassword: bcrypt.hashSync("3f!ddyUser") },
-
-
 		], {});
 	},
 

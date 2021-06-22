@@ -12,30 +12,30 @@ import * as sessionActions from './store/session';
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
-  restoreCSRF();
+    restoreCSRF();
 
-  window.csrfFetch = csrfFetch;
-  window.store = store;
-  window.sessionActions = sessionActions;
+    window.csrfFetch = csrfFetch;
+    window.store = store;
+    window.sessionActions = sessionActions;
 }
 
 function Root() {
-  return (
-    <div className="component">
-      <ReduxProvider store={store}>
-        <ModalProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </ModalProvider>
-      </ReduxProvider>
-    </div>
-  );
+    return (
+        <div className="component">
+            <ReduxProvider store={store}>
+                <ModalProvider>
+                    <BrowserRouter>
+                        <App />
+                    </BrowserRouter>
+                </ModalProvider>
+            </ReduxProvider>
+        </div>
+    );
 }
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Root />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Root />
+    </React.StrictMode>,
+    document.getElementById('root')
 );

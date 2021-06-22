@@ -9,9 +9,9 @@ const ReviewsRepository = require('../../db/reviews-repository');
 const router = express.Router();
 
 router.get('/',
-  asyncHandler(async (req, res) => {
-    const features = await PrinterFeature.findAll();
-    res.json(features)
-  }));
+    asyncHandler(async (req, res) => {
+        const features = await PrinterFeature.findAll();
+        res.json(features)
+    }));
 
 module.exports = router;

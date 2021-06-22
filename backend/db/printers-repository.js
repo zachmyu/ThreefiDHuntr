@@ -2,17 +2,17 @@ const { Printer } = require("./models");
 // const { PrinterFeature } = require("./models");
 
 async function update(printer) {
-  const id = printer.id;
-  delete printer.id;
-  await Printer.update(
-    printer,
-    {
-      where: { id },
-      returning: true,
-      plain: true,
-    }
-  );
-  return await Printer.findByPk(id);
+    const id = printer.id;
+    delete printer.id;
+    await Printer.update(
+        printer,
+        {
+            where: { id },
+            returning: true,
+            plain: true,
+        }
+    );
+    return await Printer.findByPk(id);
 }
 
 // async function list() {
@@ -28,17 +28,17 @@ async function update(printer) {
 // }
 
 async function deletePrinter(printerId) {
-  const printer = await Printer.findByPk(printerId);
-  if (!printer) throw new Error('Cannot find printer');
+    const printer = await Printer.findByPk(printerId);
+    if (!printer) throw new Error('Cannot find printer');
 
-  await Printer.destroy({ where: { id: printer.id } });
-  return printer.id;
+    await Printer.destroy({ where: { id: printer.id } });
+    return printer.id;
 }
 
 module.exports = {
-  update,
-  // list,
-  // listFeature,
-  // one,
-  deletePrinter,
+    update,
+    // list,
+    // listFeature,
+    // one,
+    deletePrinter,
 };
