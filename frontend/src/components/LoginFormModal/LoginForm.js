@@ -44,8 +44,8 @@ function LoginForm() {
                 />
             </label>
             <div className="login__button--container">
-                <button className="login__button" type="submit">Log In</button>
-                <button className="demo__button" type="submit">Demo User</button>
+                <button className="button2" type="submit">Log In</button>
+                <button className="button1" type="submit">Demo User</button>
             </div>
         </form>
     );

@@ -99,8 +99,8 @@ function SignupFormPage() {
                         />
                     </label>
                     <div className="button--container">
-                        <button className="login__button" type="submit">Log In</button>
-                        <button className="demo__button" type="submit">Demo</button>
+                        <button className="button2" type="submit">Sign Up</button>
+                        <button className="button1" type="submit">Login as Demo User</button>
                     </div>
                 </div>
             </div>

@@ -53,7 +53,7 @@ function ProfileUpdate() {
                     required
                 />
             </label>
-            <button className="login__button" type="submit">Update</button>
+            <button className="button2" type="submit">Update</button>
         </form>
     );
 }

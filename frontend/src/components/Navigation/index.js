@@ -14,23 +14,16 @@ function Navigation({ isLoaded }) {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <div>
-                <ProfileButton user={sessionUser} />
-                <NavLink to="/createPrinter">
-                    <button type="button">
-                        Create a new printer
-                    </button>
-                </NavLink>
+            <div className='navbar__user'>
+                <ProfileButton user={sessionUser}/>
             </div>
         );
     } else {
         sessionLinks = (
-            <div>
+            <div className='navbar__logged-out'>
                 <LoginFormModal />
                 <NavLink to="/signup">
-                    <button type="button">
-                        Sign Up
-                    </button>
+                    <button className="button3" type="button">Sign Up</button>
                 </NavLink>
             </div>
         );
@@ -38,14 +31,10 @@ function Navigation({ isLoaded }) {
 
     return (
         <div className="navbar">
-            <div className="navbar__element">
-                <NavLink className='navbar--element1' exact to="/">
-                    <img src='/images/Logo.png' className="homepageLogo" alt="homepageLogo"></img>
-                </NavLink>
-            </div>
-            <div className="navbar__element-links">
-                {isLoaded && sessionLinks}
-            </div>
+            <NavLink className='navbar__title' exact to="/">
+                <img src='/images/Logo.png' className="homepageLogo" alt="homepageLogo"></img>
+            </NavLink>
+            {isLoaded && sessionLinks}
         </div>
     );
 }

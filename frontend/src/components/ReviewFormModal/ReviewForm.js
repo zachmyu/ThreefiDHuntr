@@ -52,7 +52,7 @@ import './ReviewForm.css';
                 hidden
             />
 
-            <button className="submit__button" type="submit">Submit Review</button>
+            <button className="button2" type="submit">Submit Review</button>
         </form >
     );
 }

@@ -2,7 +2,6 @@
 body{
     background-image: url("splash-background.jpg");
     Background-attachment: fixed;
-    /* background-size: cover; */
     z-index: -10;
     margin-top: 160px;
     padding: 0;
@@ -44,6 +43,51 @@ body{
     font-size: 20px;
 }
 
+.button1 {
+    width: 240px;
+    height: 40px;
+    color: #4D6EF5;
+    border-radius: 10px;
+    background-color: #2e2e2e;
+    font-size: large;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.button1:hover {
+    background-color: #424242;
+}
+
+.button2 {
+    width: 240px;
+    height: 40px;
+    color: white;
+    border-radius: 10px;
+    background-color: #4D6EF5;
+    font-size: large;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.button2:hover {
+    background-color: #2954ff;
+}
+
+.button3 {
+    width: 100px;
+    height: 35px;
+    color: #4D6EF5;
+    border-radius: 10px;
+    background-color: #2e2e2e;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.button3:hover {
+    background-color: #424242;
+}
+
 a:visited,
 a:active,
 a:link {
@@ -55,7 +99,3 @@ a:link {
 a:hover {
     color: #0d3dff;
 }
-
-/* body{
-    background-color:
-} */

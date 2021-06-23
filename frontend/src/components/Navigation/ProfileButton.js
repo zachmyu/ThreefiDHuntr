@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
+    const history = useHistory();
 
     const openMenu = () => {
         if (showMenu) return;
@@ -13,35 +15,33 @@ function ProfileButton({ user }) {
 
     useEffect(() => {
         if (!showMenu) return;
-
-        const closeMenu = () => {
-            setShowMenu(false);
-        };
-
-        document.addEventListener('click', closeMenu);
-
+        const closeMenu = () => setShowMenu(false);
+        document.addEventListener("click", closeMenu);
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
+        history.push("/")
     };
 
     return (
-        <div>
-            <button
-                    className="navbar__links"
-                    style={{ backgroundColor: "Transparent", backgroundImage: "url(/images/profile.png)", backgroundSize: "50px", width: "50px", height: "50px", border: "none" }}
-                    onClick={openMenu}>
+        <div className="navbar__links">
+            <button id="navbar__prof" onClick={openMenu} style={{ backgroundColor: "Transparent"}}>
+                <img id="navbar__profpic" src="/images/profile.png"></img>
+                &nbsp;&nbsp;{user.username}
             </button>
             {showMenu && (
-                    <div className="profile-dropdown">
-                        <div>
-                                <a href={`/users/${user.id}`}>{user.username}</a></div>
-                        <div> <button onClick={logout}>Log Out</button> </div>
-
-                    </div>
+                <div id="profile-dropdown">
+                    <Link to={`/users/${user.id}`}>
+                        <button className="button1" type="button">User Edit</button>
+                    </Link>
+                    <Link to="/createPrinter">
+                        <button className="button1" type="button">Create a new printer</button>
+                    </Link>
+                    <button className="button1" onClick={logout}>Log Out</button>
+                </div>
             )}
         </div>
     );

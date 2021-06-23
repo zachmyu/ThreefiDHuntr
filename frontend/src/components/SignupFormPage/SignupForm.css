@@ -52,34 +52,6 @@ h1 {
     margin: 0;
 }
 
-.login__button {
-    width: 233px;
-    color: white;
-    border-radius: 10px;
-    background-color: #4D6EF5;
-    height: 40px;
-    font-size: large;
-    font-weight: bold;
-}
-
-.login__button:hover {
-    background-color: #a6b6fa;
-}
-
-.demo__button {
-    width: 233px;
-    color: #4D6EF5;
-    border-radius: 10px;
-    background-color: #2e2e2e;
-    height: 40px;
-    font-size: large;
-    font-weight: bold;
-}
-
-.demo__button:hover {
-    background-color: #424242;
-}
-
 .button--container {
     display: flex;
     flex-direction: row;

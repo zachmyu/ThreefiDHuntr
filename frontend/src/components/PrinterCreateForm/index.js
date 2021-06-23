@@ -169,8 +169,8 @@ const PrinterCreateForm = () => {
                         />
                     </label>
                     <div className="button--container">
-                        <button className="add__button" type="submit">Add Printer</button>
-                        <button className="cancel__button" type="button" onClick={handleCancelClick}>Cancel</button>
+                        <button className="button2" type="submit">Add Printer</button>
+                        <button className="button1" type="button" onClick={handleCancelClick}>Cancel</button>
                     </div>
                 </div>
             </div>
