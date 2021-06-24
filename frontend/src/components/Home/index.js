@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getPrinters } from "../../store/printers";
 
 const Home = () => {
@@ -32,15 +32,17 @@ const Home = () => {
                                 alt={`Thumbnail of ${printer.brand} ${printer.model}`}
                                 />
                             </div>
-                            <div className="printer-card-right">
+                            <div className="printer-card-mid">
                                 <div className="primary-text">
                                     {printer.brand} {printer.model}
                                 </div>
                                 <div className="secondary-text">
-                                    {printer.boosts} Retail price: $
-                                    {printer.retailPrice} Status:
-                                    {printer.retailStatus}
+                                    <div>Retail price: {printer.retailPrice}</div>
+                                    <div>Status: {printer.retailStatus}</div>
                                 </div>
+                            </div>
+                            <div className="printer-card-right">
+                                <div className="secondary-text">{printer.boosts}</div>
                             </div>
                         </NavLink>
                     );

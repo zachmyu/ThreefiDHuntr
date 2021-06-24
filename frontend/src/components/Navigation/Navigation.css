@@ -57,10 +57,11 @@
     padding: 10px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
-    color: #4D6EF5;
+    font-weight: bold;
+    color: #37b983;
     align-items: center;
 }
 
 #navbar__prof:hover {
-    color: #8ba1fa;
+    color: #4df5af;
 }
