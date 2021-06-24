@@ -4,10 +4,8 @@ const { check } = require('express-validator');
 const { setTokenCookie } = require('../../utils/auth');
 const { User, PrinterReview } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
-const ReviewsRepository = require('../../db/reviews-repository');
+// const ReviewsRepository = require('../../db/reviews-repository');
 const router = express.Router();
-
-
 
 const validateSignup = [
     check('username')
@@ -57,11 +55,17 @@ router.get('/', asyncHandler(async function (_req, res) {
 
 //load single user
 router.get('/:id', asyncHandler(async function (req, res) {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(req.params.id, {
+        include: {
+            model: Reviews,
+            model: OwnedPrinters,
+            model: Printers,
+            model: PrinterTags
+        }});
     return res.json(user);
 }));
 
-//load user's comments
+//load user's reviews
 router.get('/:id/reviews', asyncHandler(async function (req, res) {
     const reviews = await PrinterReview.findAll({ where: { userId: req.params.id } });
     return res.json(reviews);

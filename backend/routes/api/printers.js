@@ -1,7 +1,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const { Printer } = require('../../db/models');
+const { Printer, Review } = require('../../db/models');
 // const { PrinterFeature } = require('../../db/models/');
 const { handleValidationErrors } = require('../../utils/validation');
 // const PrintersRepository = require('../../db/printers-repository');
@@ -72,16 +72,16 @@ router.get('/:id', asyncHandler(async function (req, res) {
 	return res.json(printer);
 }));
 
-//Load printer comments
-router.get('/:id/reviews', asyncHandler(async function (req, res) {
-	const reviews = await ReviewsRepository.reviewsByPrinterId(req.params.id);
-	return res.json(reviews);
-}));
-
 //Load printer features
 router.get('/features', asyncHandler(async function (req, res) {
 	const features = await Printer.findAll();
 	return res.json(features);
+}));
+
+//Load printer reviews
+router.get('/:id/reviews', asyncHandler(async function (req, res) {
+	const reviews = await Review.findAll({ where: { id: req.params.id } });
+	return res.json(reviews);
 }));
 
 //Add new printer
@@ -107,14 +107,8 @@ router.post('/', validateAdd, asyncHandler(async (req, res) => {
 	return res.json({ printer });
 }));
 
-//Add new printer review
-router.post('/:id', validateReview, asyncHandler(async (req, res) => {
-	const review = await ReviewsRepository.addReview(req.body, req.params.id);
-	return res.json({ review });
-}));
-
 //Edit printer info
-router.patch('/:id', validateUpdate, asyncHandler(async function (req, res) {
+router.put('/:id', validateUpdate, asyncHandler(async function (req, res) {
     await Printer.update(req.body, { where: { id: req.params.id } })
     const printer = await Printer.findByPk(req,params.id)
 	return res.json(printer)

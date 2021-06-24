@@ -56,7 +56,7 @@ export const getUsers = () => async dispatch => {
 
 export const updateUser = (user) => async dispatch => {
     const response = await fetch(`/api/users/${user.id}`, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
