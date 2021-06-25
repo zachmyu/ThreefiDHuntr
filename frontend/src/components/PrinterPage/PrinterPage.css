@@ -11,7 +11,7 @@
     height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     margin: 40px;
     border-radius: 20px;
     padding: 30px;
