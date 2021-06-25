@@ -6,11 +6,10 @@ import ReviewFormModal from '../ReviewFormModal';
 import './PrinterPage.css'
 
 const PrinterPage = () => {
-
+    const sessionUser = useSelector(state => state.session.user);
     const { id } = useParams();
     const printer = useSelector(state => state.printer[id]);
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session)
     const history = useHistory();
     const [showEditPrinterForm, setShowEditPrinterForm] = useState(false);
 
@@ -27,7 +26,9 @@ const PrinterPage = () => {
         content = (
             <div className="Reviews__Create">
                 <ReviewFormModal />
-            </div>)
+                <button className="button1" type="button">{showEditPrinterForm}Edit Printer Info</button>
+            </div>
+        )
     } else {
         content = (
             <h3>Please log in to create a review!</h3>

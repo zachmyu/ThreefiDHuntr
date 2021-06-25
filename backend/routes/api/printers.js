@@ -1,11 +1,12 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const { Printer, Review } = require('../../db/models');
+const { Printer, PrinterReview, PrinterBoosts,  FeatureType } = require('../../db/models');
+// const printer = require('../../db/models/printer');
 // const { PrinterFeature } = require('../../db/models/');
 const { handleValidationErrors } = require('../../utils/validation');
 // const PrintersRepository = require('../../db/printers-repository');
-const ReviewsRepository = require('../../db/reviews-repository');
+// const ReviewsRepository = require('../../db/reviews-repository');
 const router = express.Router();
 
 const validateAdd = [
@@ -62,13 +63,17 @@ const validateReview = [
 
 //Load list of printers
 router.get('/', asyncHandler(async function (req, res) {
-	const printers = await Printer.findAll();
+	const printers = await Printer.findAll({
+        include: "Boost"
+    });
 	return res.json(printers);
 }));
 
 //Load single printer
 router.get('/:id', asyncHandler(async function (req, res) {
-	const printer = await Printer.findByPk(req.params.id);
+	const printer = await Printer.findByPk(req.params.id, {
+        include: PrinterReview
+    });
 	return res.json(printer);
 }));
 
@@ -86,6 +91,7 @@ router.get('/:id/reviews', asyncHandler(async function (req, res) {
 
 //Add new printer
 router.post('/', validateAdd, asyncHandler(async (req, res) => {
+    console.log("req my body", req.body)
 	const {
         brand,
         model,
@@ -93,7 +99,8 @@ router.post('/', validateAdd, asyncHandler(async (req, res) => {
         retailPrice,
         videoUrl,
         pictureUrl,
-        retailStatus
+        retailStatus,
+        features
     } = req.body;
 	const printer = await Printer.create({
         brand,
@@ -104,6 +111,12 @@ router.post('/', validateAdd, asyncHandler(async (req, res) => {
         pictureUrl,
         retailStatus
     });
+    console.log("FEATTTUURES Backend", features)
+    const newFeatures = features.map(featureId => {
+        return {featureId: parseInt(featureId), printerId: printer.id}
+    })
+    console.log("NEEEEEWWW HERE!", newFeatures)
+    const feature = await FeatureType.bulkCreate(newFeatures)
 	return res.json({ printer });
 }));
 

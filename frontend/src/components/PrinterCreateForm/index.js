@@ -14,6 +14,7 @@ const PrinterCreateForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
+    const featureSelect = useSelector((state) => Array.from(state.printer.features))
     const [brand, setBrand] = useState('');
     const [model, setModel] = useState('');
     const [description, setDescription] = useState('');
@@ -34,7 +35,7 @@ const PrinterCreateForm = () => {
     }, [dispatch]);
 
     //Function to change selected check boxes into an array
-    const featureSelect = useSelector((state) => Array.from(state.printer.features))
+
 
     const handleCheckbox = (e) => {
         let id = e.target.value;
@@ -57,6 +58,8 @@ const PrinterCreateForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
+        console.log("Feaaattttuure", features)
+        debugger
         dispatch(printerActions.createPrinter({
             brand,
             model,
@@ -64,12 +67,14 @@ const PrinterCreateForm = () => {
             retailPrice,
             videoUrl,
             pictureUrl,
-            retailStatus
+            retailStatus,
+            features
         }))
-            .then(history.push(`/`))
+            .then(() => history.push(`/`))
             // .then(history.push(`/printer/${data.id}`))
             //how do I reroute it to the new created page?
             .catch(async (res) => {
+                debugger
                     const data = await res.json();
                     if (data && data.errors) setErrors(data.errors);
             });
@@ -142,12 +147,12 @@ const PrinterCreateForm = () => {
                     </label>
                     <label>
                         Current Retail Status
-                        {/* <select onChange={(e) => setRetailStatus(e.target.value)}
+                        <select onChange={(e) => setRetailStatus(e.target.value)}
                             value={retailStatus}>
-                            {printerStatus.map(status =>
+                            {/* {printerStatus.map(status =>
                                 <option key={status}>{status}</option>
-                                )}
-                            </select> */}
+                                )} */}
+                            </select>
                     </label>
                     <label>
                         Printer Features
@@ -156,6 +161,7 @@ const PrinterCreateForm = () => {
                                 <input type="checkbox" id={feature.id} name={feature.features} value={feature.id} onChange={(e) => handleCheckbox(e)} />
                                 <label htmlFor={feature.features}>{feature.features}</label>
                             </li>
+                            //Have the features mapped out, but how do I grab the info and add it to a joins table?
                         )}</ul>
                     </label>
                 </div>

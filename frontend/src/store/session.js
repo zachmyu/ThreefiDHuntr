@@ -109,11 +109,11 @@ export const signup = (user) => async (dispatch) => {
     return response;
 };
 
-const sortList = (list) => {
-    return list.sort((userA, userB) => {
-        return userA.username - userB.username;
-    }).map((user) => user.id);
-};
+// const sortList = (list) => {
+//     return list.sort((userA, userB) => {
+//         return userA.username - userB.username;
+//     }).map((user) => user.id);
+// };
 
 const initialState = { user: null };
 

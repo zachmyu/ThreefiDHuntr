@@ -29,7 +29,7 @@ function ProfileButton({ user }) {
     return (
         <div className="navbar__links">
             <button id="navbar__prof" onClick={openMenu} style={{ backgroundColor: "Transparent"}}>
-                <img id="navbar__profpic" src="/images/profile.png"></img>
+                <img id="navbar__profpic" alt="profile avatar" src="/images/profile.png"></img>
                 &nbsp;&nbsp;{user.username}
             </button>
             {showMenu && (

@@ -5,7 +5,7 @@ import { getPrinters } from "../../store/printers";
 
 const Home = () => {
 	const dispatch = useDispatch();
-	const printer = useSelector((state) => {
+    const printer = useSelector((state) => {
 		return state.printer.list.map((printerId) => state.printer[printerId]);
 	});
 
@@ -42,7 +42,8 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className="printer-card-right">
-                                <div className="secondary-text">{printer.boosts}</div>
+                                <i class="fas fa-chevron-up"></i>
+                                <div className="secondary-text">{printer.Boost.length}</div>
                             </div>
                         </NavLink>
                     );

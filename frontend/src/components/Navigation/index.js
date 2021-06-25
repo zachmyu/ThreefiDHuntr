@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import * as sessionActions from '../../store/session';
-import * as printerActions from '../../store/printers';
+// import * as sessionActions from '../../store/session';
+// import * as printerActions from '../../store/printers';
 import ProfileButton from './ProfileButton';
-import CreatePrinterForm from '../PrinterCreateForm';
+// import CreatePrinterForm from '../PrinterCreateForm';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 

@@ -7,7 +7,7 @@ function ReviewFormModal() {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Add Review</button>
+            <button className="button1" type="button" onClick={() => setShowModal(true)}>Add Review</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <ReviewForm />

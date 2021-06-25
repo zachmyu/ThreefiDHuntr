@@ -21,7 +21,8 @@ const addOnePrinter = printer => ({
 });
 
 export const createPrinter = printer => async dispatch => {
-    const { brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus } = printer
+    const { brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus, features } = printer
+    debugger
     const response = await csrfFetch(`/api/printers`, {
         method: 'POST',
         headers: {
@@ -35,6 +36,7 @@ export const createPrinter = printer => async dispatch => {
             videoUrl,
             pictureUrl,
             retailStatus,
+            features
         }),
     });
 
@@ -65,7 +67,7 @@ export const getOnePrinter = id => async dispatch => {
     const response = await csrfFetch(`/api/printers/${id}`);
     if (response.ok) {
         const printer = await response.json();
-        const printerId = printer.id
+        // const printerId = printer.id
         dispatch(addOnePrinter(printer));
     }
 };
@@ -119,20 +121,20 @@ const printerReducer = (state = initialState, action) => {
             };
         }
         case ADD_ONE: {
-            if (!state[action.printer.id]) {
-                const newState = {
-                    ...state,
-                    [action.printer.id]: action.printer
-                };
-                const printerList = newState.list.map(id => newState[id]);
-                printerList.push(action.printer);
-                newState.list = sortList(printerList);
-                return newState;
-            }
+            // if (!state[action.printer.id]) {
+            //     const newState = {
+            //         ...state,
+            //         [action.printer.id]: action.printer
+            //     };
+            //     const printerList = newState.list.map(id => newState[id]);
+            //     printerList.push(action.printer);
+            //     newState.list = sortList(printerList);
+            //     return newState;
+            // }
             return {
                 ...state,
                 [action.printer.id]: {
-                    ...state[action.printer.id],
+                    // ...state[action.printer.id],
                     ...action.printer,
                 }
             };
