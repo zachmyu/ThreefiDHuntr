@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         },
     }, {});
     PrinterBoost.associate = function (models) {
-    // associations can be defined here
+        PrinterBoost.belongsTo(models.Printer, { foreignKey: 'printerId' })
     };
     return PrinterBoost;
 };

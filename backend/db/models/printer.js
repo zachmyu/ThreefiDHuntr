@@ -67,6 +67,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'printerId'
         }
         Printer.belongsToMany(models.User, boostColMap);
+        Printer.hasMany(models.PrinterBoost, { foreignKey: 'printerId', as: 'Boost'})
         Printer.belongsToMany(models.User, tagColMap);
         Printer.belongsToMany(models.User, ownedColMap);
         Printer.belongsToMany(models.PrinterFeature, featureColMap);
