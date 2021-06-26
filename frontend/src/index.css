@@ -3,6 +3,7 @@ body{
     Background-attachment: fixed;
     z-index: -10;
     margin-top: 160px;
+    margin-bottom: 50px;
     padding: 0;
 }
 
@@ -114,6 +115,26 @@ a:link {
 }
 a:hover {
     color: #4df5af;
+}
+
+h1 {
+    font-family:Helvetica;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+h2 {
+    font-family:Helvetica;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+p{
+    font-family:Helvetica;
+    color: white;
+    font-size: 0.8em;
 }
 
 @media screen and (max-width: 960px) {

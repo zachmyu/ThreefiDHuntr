@@ -22,28 +22,28 @@ const Home = () => {
                     return (
                         <NavLink
                             className="printer-card"
-                            key={printer.id}
+                            key={printer?.id}
                             to={`/printers/${printer.id}`}
                         >
                             <div className="printer-card-left">
                                 <img
                                 className="printer-thumbnail-image"
-                                src={printer.pictureUrl}
-                                alt={`Thumbnail of ${printer.brand} ${printer.model}`}
+                                src={printer?.pictureUrl}
+                                alt={`Thumbnail of ${printer?.brand} ${printer?.model}`}
                                 />
                             </div>
                             <div className="printer-card-mid">
                                 <div className="primary-text">
-                                    {printer.brand} {printer.model}
+                                    {printer?.brand} {printer?.model}
                                 </div>
                                 <div className="secondary-text">
-                                    <div>Retail price: {printer.retailPrice}</div>
-                                    <div>Status: {printer.retailStatus}</div>
+                                    <div>Retail price: {printer?.retailPrice}</div>
+                                    <div>Status: {printer?.retailStatus}</div>
                                 </div>
                             </div>
                             <div className="printer-card-right">
                                 <i class="fas fa-chevron-up"></i>
-                                <div className="secondary-text">{printer.Boost.length}</div>
+                                <div className="secondary-text">{printer?.Boost?.length}</div>
                             </div>
                         </NavLink>
                     );

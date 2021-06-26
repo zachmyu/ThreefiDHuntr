@@ -46,11 +46,7 @@ textarea {
     height: 200px;
 }
 
-h1 {
-    color: white;
-    font-weight: bold;
-    margin: 0;
-}
+
 
 .button--container {
     display: flex;

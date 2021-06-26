@@ -22,14 +22,12 @@ module.exports = {
             },
             retailPrice: {
                 allowNull: false,
-                type: Sequelize.DECIMAL(8, 2)
+                type: Sequelize.DECIMAL(10, 2)
             },
             videoUrl: {
-                unique: true,
                 type: Sequelize.STRING
             },
             pictureUrl: {
-                unique: true,
                 type: Sequelize.STRING
             },
             retailStatus: {

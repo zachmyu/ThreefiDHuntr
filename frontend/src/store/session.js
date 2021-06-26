@@ -40,7 +40,6 @@ export const getOneUser = id => async dispatch => {
 
     if (response.ok) {
         const user = await response.json();
-        console.log("Miah said poop", user)
         dispatch(addOneUser(user));
     }
 };

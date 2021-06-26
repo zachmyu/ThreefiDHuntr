@@ -9,11 +9,7 @@ import './ReviewForm.css';
     const sessionUser = useSelector((state) => state.session.user)
     const [review, setReview] = useState('');
     const [errors, setErrors] = useState([]);
-    // const userId = sessionUser.id
     const { printerId } = useParams()
-
-    // console.log("SESSSSSSSSSSSSION", sessionUser)
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
