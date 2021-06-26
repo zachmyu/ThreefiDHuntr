@@ -95,22 +95,28 @@ module.exports = (sequelize, DataTypes) => {
         const boostColMap = {
             through: 'PrinterBoosts',
             otherKey: 'printerId',
-            foreignKey: 'userId'
+            foreignKey: 'userId',
+            onDelete: 'cascade',
+            hooks: true
         }
         const tagColMap = {
             through: 'PrinterTags',
             otherKey: 'printerId',
-            foreignKey: 'userId'
+            foreignKey: 'userId',
+            onDelete: 'cascade',
+            hooks: true
         }
         const ownedColMap = {
             through: 'OwnedPrinters',
             otherKey: 'printerId',
-            foreignKey: 'userId'
+            foreignKey: 'userId',
+            onDelete: 'cascade',
+            hooks: true
         }
         User.belongsToMany(models.Printer, boostColMap);
         User.belongsToMany(models.Printer, tagColMap);
         User.belongsToMany(models.Printer, ownedColMap);
-        User.hasMany(models.PrinterReview, { foreignKey: 'userId' });
+        User.hasMany(models.PrinterReview, { foreignKey: 'userId', onDelete: 'cascade', hooks: true });
     };
     return User;
 };

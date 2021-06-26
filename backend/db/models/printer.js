@@ -49,29 +49,37 @@ module.exports = (sequelize, DataTypes) => {
         const boostColMap = {
             through: 'PrinterBoosts',
             otherKey: 'userId',
-            foreignKey: 'printerId'
+            foreignKey: 'printerId',
+            onDelete: 'cascade',
+            hooks: true
         }
         const tagColMap = {
             through: 'PrinterTags',
             otherKey: 'userId',
-            foreignKey: 'printerId'
+            foreignKey: 'printerId',
+            onDelete: 'cascade',
+            hooks: true
         }
         const ownedColMap = {
             through: 'OwnedPrinters',
             otherKey: 'userId',
-            foreignKey: 'printerId'
+            foreignKey: 'printerId',
+            onDelete: 'cascade',
+            hooks: true
         }
         const featureColMap = {
             through: 'featureTypes',
             otherKey: 'featureId',
-            foreignKey: 'printerId'
+            foreignKey: 'printerId',
+            onDelete: 'cascade',
+            hooks: true
         }
         Printer.belongsToMany(models.User, boostColMap);
-        Printer.hasMany(models.PrinterBoost, { foreignKey: 'printerId', as: 'Boost'})
+        Printer.hasMany(models.PrinterBoost, { foreignKey: 'printerId', as: 'Boost', onDelete: 'cascade', hooks: true })
         Printer.belongsToMany(models.User, tagColMap);
         Printer.belongsToMany(models.User, ownedColMap);
         Printer.belongsToMany(models.PrinterFeature, featureColMap);
-        Printer.hasMany(models.PrinterReview, { foreignKey: 'printerId' });
+        Printer.hasMany(models.PrinterReview, { foreignKey: 'printerId', onDelete: 'cascade', hooks: true });
     };
     return Printer;
 };
