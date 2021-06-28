@@ -1,18 +1,15 @@
 import { csrfFetch } from './csrf';
-import { LOAD_REVIEWS, REMOVE_REVIEW, ADD_REVIEW } from './reviews';
+import { LOAD_REVIEWS, ADD_REVIEW } from './reviews';
 
 const LOAD = 'printers/LOAD';
-const LOAD_FEATURES = 'printers/LOAD_FEATURES';
 const ADD_ONE = 'printers/ADD_ONE';
+const DEL_PRINTER = 'printers/DEL_PRINTER'
+const LOAD_FEATURES = 'printers/LOAD_FEATURES'
 
-const load = list => ({
+//Actions
+const load = printers => ({
     type: LOAD,
-    list,
-});
-
-const loadFeatures = features => ({
-    type: LOAD_FEATURES,
-    features,
+    printers,
 });
 
 const addOnePrinter = printer => ({
@@ -20,6 +17,18 @@ const addOnePrinter = printer => ({
     printer,
 });
 
+const delPrinter = printerId => ({
+    type: DEL_PRINTER,
+    printerId
+})
+
+const loadFeatures = feature => ({
+    type: LOAD_FEATURES,
+    feature
+})
+
+//Thunks!!
+//CREATE
 export const createPrinter = printer => async dispatch => {
     const { brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus, features } = printer
     debugger
@@ -47,37 +56,22 @@ export const createPrinter = printer => async dispatch => {
     }
 };
 
-export const updatePrinter = data => async dispatch => {
-    const response = await csrfFetch(`/api/printers/${data.id}`, {
-        method: 'put',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-
-    if (response.ok) {
-        const printer = await response.json();
-        dispatch(addOnePrinter(printer));
-        return printer;
-    }
-};
-
+//READ ONE
 export const getOnePrinter = id => async dispatch => {
     const response = await csrfFetch(`/api/printers/${id}`);
     if (response.ok) {
         const printer = await response.json();
-        // const printerId = printer.id
         dispatch(addOnePrinter(printer));
     }
 };
 
+//READ ALL
 export const getPrinters = () => async dispatch => {
     const response = await csrfFetch(`/api/printers`);
 
     if (response.ok) {
-        const list = await response.json();
-        dispatch(load(list));
+        const printers = await response.json();
+        dispatch(load(printers));
     }
 };
 
@@ -90,35 +84,53 @@ export const getPrinterFeatures = () => async dispatch => {
     }
 };
 
-const initialState = {
-    list: [],
-    features: []
+//UPDATE
+export const updatePrinter = data => async dispatch => {
+    const response = await csrfFetch(`/api/printers/${data.id}`, {
+        method: 'put',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+        const printer = await response.json();
+        dispatch(addOnePrinter(printer));
+        return printer;
+    }
 };
 
-const sortList = (list) => {
-    return list.sort((printerA, printerB) => {
-        return printerA.id - printerB.id;
-    }).map((printer) => printer.id);
-};
+//DELETE
+export const deletePrinter = printerId => async dispatch => {
+    const response = await csrfFetch(`/api/printers/${printerId}`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        const printer = await response.json();
+        dispatch(delPrinter(printerId));
+        return printer;
+    }
+}
 
+const initialState = {};
+
+//REDUCER
 const printerReducer = (state = initialState, action) => {
+    let newState;
     switch (action.type) {
         case LOAD: {
             const allPrinter = {};
-            action.list.forEach(printer => {
+            action.printers.forEach(printer => {
                 allPrinter[printer.id] = printer;
             });
-            return {
-                ...allPrinter,
-                ...state,
-                list: sortList(action.list),
-            };
+            newState = { ...allPrinter }
+            return newState;
         }
         case LOAD_FEATURES: {
-            return {
+            newState = {
                 ...state,
-                features: action.features,
-            };
+                feature: action.feature
+            }
+            return newState;
         }
         case ADD_ONE: {
             // if (!state[action.printer.id]) {
@@ -131,13 +143,16 @@ const printerReducer = (state = initialState, action) => {
             //     newState.list = sortList(printerList);
             //     return newState;
             // }
-            return {
+            newState = {
                 ...state,
-                [action.printer.id]: {
-                    // ...state[action.printer.id],
-                    ...action.printer,
-                }
-            };
+                [action.printer.id]: {...action.printer}
+            }
+            return newState;
+        }
+        case DEL_PRINTER: {
+            newState = { ...state }
+            delete newState[action.printerId]
+            return newState;
         }
         case LOAD_REVIEWS: {
             return {
@@ -148,19 +163,9 @@ const printerReducer = (state = initialState, action) => {
                 }
             };
         }
-        case REMOVE_REVIEW: {
-            return {
-                ...state,
-                [action.printerId]: {
-                    ...state[action.printerId],
-                    reviews: state[action.printerId].filter(
-                        (review) => review.id !== action.reviewId
-                    ),
-                },
-            };
-        }
+
         case ADD_REVIEW: {
-            console.log(action.review);
+            // console.log(action.review);
             return {
                 ...state,
                     [action.review.printerId]: {

@@ -6,7 +6,8 @@ import { getPrinters } from "../../store/printers";
 const Home = () => {
 	const dispatch = useDispatch();
     const printer = useSelector((state) => {
-		return state.printer.list.map((printerId) => state.printer[printerId]);
+        const printerList = Object.values(state.printer)
+		return printerList;
 	});
 
 	useEffect(() => {
