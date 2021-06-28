@@ -14,9 +14,12 @@ const PrinterCreateForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
-    const featureSelect = useSelector((state) => Array.from(state.printer.features))
-    // const retailStatus = useSelector((state) => Array.from(state.printer.retailStatus))
-    // const retailStatus = useSelector((state) => state.printer.retailStatus)
+    const featureSelect = useSelector(state => state.printer.feature)
+    // const featureSelect = useSelector((state) => {
+    //     // console.log("staaaaate", Array.from(state.printer.feature))
+    //         // const featureList = Object.values(state.printer.feature)
+    //         // return featureList;
+    // })
     const [brand, setBrand] = useState('');
     const [model, setModel] = useState('');
     const [description, setDescription] = useState('');
@@ -59,7 +62,7 @@ const PrinterCreateForm = () => {
             retailStatus,
             features
         }))
-            .then((printer) => history.push(`/printers/${printer.id}`))
+            .then((printer) => history.push(`/`))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
@@ -70,6 +73,8 @@ const PrinterCreateForm = () => {
         e.preventDefault();
         history.push('/')
     };
+
+    if (!featureSelect) return null;
 
     return (
         <form className='form--container' onSubmit={handleSubmit}>
@@ -116,7 +121,7 @@ const PrinterCreateForm = () => {
                             type="text"
                             value={videoUrl}
                             onChange={(e) => setVideoUrl(e.target.value)}
-                            required
+                            // required
                         />
                     </label>
                     <label>
@@ -126,7 +131,7 @@ const PrinterCreateForm = () => {
                             type="text"
                             value={pictureUrl}
                             onChange={(e) => setPictureUrl(e.target.value)}
-                            required
+                            // required
                         />
                     </label>
                     <label>

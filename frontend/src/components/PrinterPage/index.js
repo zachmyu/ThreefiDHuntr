@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import { getOnePrinter } from '../../store/printers'
+import { getOnePrinter, deletePrinter } from '../../store/printers'
 import ReviewFormModal from '../ReviewFormModal';
 import './PrinterPage.css'
 
@@ -13,17 +13,22 @@ const PrinterPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [showEditPrinterForm, setShowEditPrinterForm] = useState(false);
-    const [deleteThisPrinter, setDeleteThisPrinter] = useState(false);
 
     useEffect(() => {
         dispatch(getOnePrinter(id));
         setShowEditPrinterForm(false);
     }, [dispatch, id]);
 
-    // const handleDelete = async () => {
-    //     await dispatch(deletePrinter(printer.id))
-    //     history.push('/')
-    // }
+    const handleDelete = async (e) => {
+        e.preventDefault()
+        try {
+            await dispatch(deletePrinter(printer.id))
+            history.push('/')
+        } catch (e) {
+            //This error shouldn't appear unless the printer is deleted directly from the database but not removed from the state...
+            console.log(e);
+        }
+    }
 
     if (!printer) history.push('/');
 
@@ -34,7 +39,7 @@ const PrinterPage = () => {
                 <ReviewFormModal />
                 <button className="button1" type="button">{showEditPrinterForm}Edit Printer Info</button>
 
-                <button className="button1" type="button" onClick={e => window.confirm("Are you sure you want to delete this printer?") ? console.log("handleDelete") : e.preventDefault()}>Delete Printer</button>
+                <button className="button1" type="button" onClick={handleDelete}>Delete Printer</button>
             </div>
         )
     } else {

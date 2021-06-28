@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         },
     }, {});
     FeatureType.associate = function (models) {
-    // associations can be defined here
+        FeatureType.belongsTo(models.Printer, { foreignKey: 'printerId' })
     };
     return FeatureType;
 };

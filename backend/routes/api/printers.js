@@ -1,12 +1,8 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const { Printer, PrinterReview, FeatureType } = require('../../db/models');
-// const printer = require('../../db/models/printer');
-// const { PrinterFeature } = require('../../db/models/');
+const { Printer, PrinterReview, FeatureType, PrinterBoost, PrinterTag, OwnedPrinter } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
-// const PrintersRepository = require('../../db/printers-repository');
-// const ReviewsRepository = require('../../db/reviews-repository');
 const router = express.Router();
 
 const validateAdd = [
@@ -26,12 +22,12 @@ const validateAdd = [
 		.exists({ checkFalsy: true })
 		.isLength({ min: 2 })
 		.withMessage('If unsure of price, please put an estimate.'),
-	check('videoUrl')
-		.isURL()
-		.withMessage('Please enter a valid URL.'),
-	check('pictureUrl')
-		.isURL()
-		.withMessage('Please enter a valid URL.'),
+	// check('videoUrl')
+	// 	.isURL()
+	// 	.withMessage('Please enter a valid URL.'),
+	// check('pictureUrl')
+	// 	.isURL()
+	// 	.withMessage('Please enter a valid URL.'),
 	handleValidationErrors,
 ];
 
@@ -44,12 +40,12 @@ const validateUpdate = [
 		.exists({ checkFalsy: true })
 		.isLength({ min: 2 })
 		.withMessage('If unsure of price, please put an estimate.'),
-	check('videoUrl')
-		.isURL()
-		.withMessage('Please enter a valid URL.'),
-	check('pictureUrl')
-		.isURL()
-		.withMessage('Please enter a valid URL.'),
+	// check('videoUrl')
+	// 	.isURL()
+	// 	.withMessage('Please enter a valid URL.'),
+	// check('pictureUrl')
+	// 	.isURL()
+	// 	.withMessage('Please enter a valid URL.'),
 	handleValidationErrors,
 ];
 
@@ -73,15 +69,18 @@ router.get('/', asyncHandler(async function (req, res) {
 router.get('/:id', asyncHandler(async function (req, res) {
 	const printer = await Printer.findByPk(req.params.id, {
         include: PrinterReview,
+        // include: "Feature"
     });
-	return res.json(printer);
+    // const features = await PrinterFeature.findAll();
+	// return res.json(printer, features);
+    return res.json(printer);
 }));
 
 //Load printer features
-router.get('/features', asyncHandler(async function (req, res) {
-	const features = await Printer.findAll();
-	return res.json(features);
-}));
+// router.get('/features', asyncHandler(async function (req, res) {
+// 	const features = await Printer.findAll();
+// 	return res.json(features);
+// }));
 
 //Load printer reviews
 router.get('/:id/reviews', asyncHandler(async function (req, res) {
@@ -128,8 +127,13 @@ router.put('/:id', validateUpdate, asyncHandler(async function (req, res) {
 router.delete("/:id", asyncHandler(async function (req, res) {
     const printerToDel = await Printer.findByPk(req.params.id)
     if (!printerToDel) throw new Error('Printer not found!');
+    await FeatureType.destroy({where: {printerId: printerToDel.id}})
+    await PrinterBoost.destroy({where: {printerId: printerToDel.id}})
+    await PrinterTag.destroy({where: {printerId: printerToDel.id}})
+    await OwnedPrinter.destroy({where: {printerId: printerToDel.id}})
+    await PrinterReview.destroy({where: {printerId: printerToDel.id}})
     await Printer.destroy({ where: {id: printerToDel.id} });
-    return res.json({ printerId });
+    return res.json({ printerToDel });
 }));
 
 module.exports = router;
