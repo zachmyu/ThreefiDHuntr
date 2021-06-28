@@ -4,10 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './PrinterCreate.css';
 
-// if (printer) {
-//      history.push(`/printer/${printer.id}`);
-// }
-
 const RETAIL = ["Available", "Pre-Order", "Discontinued", "Prototype"]
 
 const PrinterCreateForm = () => {
@@ -15,11 +11,6 @@ const PrinterCreateForm = () => {
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const featureSelect = useSelector(state => state.printer.feature)
-    // const featureSelect = useSelector((state) => {
-    //     // console.log("staaaaate", Array.from(state.printer.feature))
-    //         // const featureList = Object.values(state.printer.feature)
-    //         // return featureList;
-    // })
     const [brand, setBrand] = useState('');
     const [model, setModel] = useState('');
     const [description, setDescription] = useState('');
@@ -62,7 +53,7 @@ const PrinterCreateForm = () => {
             retailStatus,
             features
         }))
-            .then((printer) => history.push(`/`))
+            .then(() => history.push(`/`))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);

@@ -31,7 +31,6 @@ const loadFeatures = feature => ({
 //CREATE
 export const createPrinter = printer => async dispatch => {
     const { brand, model, description, retailPrice, videoUrl, pictureUrl, retailStatus, features } = printer
-    debugger
     const response = await csrfFetch(`/api/printers`, {
         method: 'POST',
         headers: {
