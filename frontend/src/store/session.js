@@ -1,9 +1,9 @@
 import { csrfFetch } from './csrf';
-import { LOAD_REVIEWS } from './reviews';
+// import { LOAD_REVIEWS } from './reviews';
 
 const LOAD = 'session/LOAD';
 const ADD_ONE = 'session/ADD_ONE'
-const DEL_USER = 'users/DEL_USER'
+// const DEL_USER = 'users/DEL_USER'
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
@@ -32,10 +32,10 @@ const addOneUser = user => ({
     payload: user,
 });
 
-const delUser = userId => ({
-    type: DEL_USER,
-    payload: userId
-})
+// const delUser = userId => ({
+//     type: DEL_USER,
+//     payload: userId
+// })
 
 
 //Thunks!!
@@ -103,15 +103,15 @@ export const updateUser = (data, id) => async dispatch => {
 };
 
 //DELETE
-export const deleteUser = userId => async dispatch => {
-    const response = await csrfFetch(`/api/users/${userId}`, {
-        method: "DELETE"
-    })
-    if (response.ok) {
-        const user = await response.json();
-        dispatch(delUser(userId))
-    }
-}
+// export const deleteUser = userId => async dispatch => {
+//     const response = await csrfFetch(`/api/users/${userId}`, {
+//         method: "DELETE"
+//     })
+//     if (response.ok) {
+//         const user = await response.json();
+//         dispatch(delUser(user))
+//     }
+// }
 
 //LOGIN
 export const login = (user) => async (dispatch) => {
@@ -173,11 +173,11 @@ const sessionReducer = (state = initialState, action) => {
             newState.user = action.payload
             return newState;
         };
-        case DEL_USER: {
-            newState = { ...state }
-            delete newState[action.payload]
-            return newState;
-        };
+        // case DEL_USER: {
+        //     newState = { ...state }
+        //     delete newState[action.payload]
+        //     return newState;
+        // };
         // case LOAD_REVIEWS: {
         //     newState = {
         //         ...state,

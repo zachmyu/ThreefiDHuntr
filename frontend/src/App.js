@@ -9,6 +9,7 @@ import PrinterPage from "./components/PrinterPage";
 import PrinterUpdateForm from "./components/PrinterUpdateForm";
 import UserPage from "./components/ProfilePage";
 import SignupFormPage from "./components/SignupFormPage";
+import ReviewsUpdateForm from "./components/ReviewsUpdateForm";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -26,10 +27,10 @@ function App() {
                         <Route exact path="/">
                             <Home />
                         </Route>
-                        <Route path="/signup">
+                        <Route exact path="/signup">
                             <SignupFormPage />
                         </Route>
-                        <Route path="/createPrinter">
+                        <Route exact path="/createPrinter">
                             <PrinterCreateForm />
                         </Route>
                         <Route exact path="/printers/:id">
@@ -38,8 +39,11 @@ function App() {
                         <Route exact path="/printers/:id/edit">
                             <PrinterUpdateForm />
                         </Route>
-                        <Route path="/users/:id">
+                        <Route exact path="/users/:id">
                             <UserPage />
+                        </Route>
+                        <Route exact path="/reviews/:id">
+                            <ReviewsUpdateForm />
                         </Route>
                     </Switch>
                 )}

@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import { getOneUser, deleteUser, logout } from '../../store/session'
+import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { getOneUser } from '../../store/session'
+// import ReviewEditModal from '../ReviewEditModal';
 
 import './Profile.css'
 // import ProfileUpdate from '../ProfileUpdateModal/ProfileUpdateModal';
@@ -20,7 +21,13 @@ const UserPage = () => {
     if (!user.id || !user) history.push('/');
 
     let content = null;
+    // let reviewEdit = null;
     if (sessionUser) {
+        // reviewEdit = (
+        //     <div className="review__edit">
+        //         {/* <ReviewEditModal /> */}
+        //     </div>
+        // )
         content = (
             <div className="User__Edit">
                 {/* <ProfileUpdate /> */}
@@ -28,6 +35,9 @@ const UserPage = () => {
             </div>
         )
     } else {
+        // reviewEdit = (
+        //     <h3>Please log in to edit your comments!</h3>
+        // )
         content = (
             <h3>Please log in to edit your account!</h3>
         )
@@ -51,8 +61,12 @@ const UserPage = () => {
                         return (
                             <div className="user-review-card" key={review.id}>
                                 {review?.review}
+                                {/* <NavLink to={`/reviews/${review.id}`}>
+                                    <button className="button1" type="button">Edit Review</button>
+                                </NavLink> */}
                             </div>
                         )
+                        // {reviewEdit}
                     })}
                 </div>
             </div>

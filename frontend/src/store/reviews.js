@@ -1,9 +1,9 @@
 import { csrfFetch } from './csrf';
 
 const LOAD_REVIEWS = "reviews/LOAD_REVIEWS";
-const LOAD_USER_REVIEWS = "reviews/LOAD_USER_REVIEWS";
+// const LOAD_USER_REVIEWS = "reviews/LOAD_USER_REVIEWS";
 const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
-const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
+// const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 const ADD_REVIEW = "reviews/ADD_REVIEW";
 
 const load = (reviews, id) => ({
@@ -12,10 +12,10 @@ const load = (reviews, id) => ({
     id,
 });
 
-const update = (review) => ({
-    type: UPDATE_REVIEW,
-    review,
-});
+// const update = (review) => ({
+//     type: UPDATE_REVIEW,
+//     review,
+// });
 
 const add = (review) => ({
     type: ADD_REVIEW,
@@ -28,7 +28,7 @@ const remove = (reviewId, printerId) => ({
     printerId,
 });
 
-export const getReviews = (id) => async dispatch => {
+export const getReviews = id => async dispatch => {
     const response = await csrfFetch(`/api/printers/${id}/reviews`);
 
     if (response.ok) {
@@ -37,12 +37,20 @@ export const getReviews = (id) => async dispatch => {
     }
 };
 
+export const getOneReview = id => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${id}`);
+    if (response.ok) {
+        const reviews = await response.json();
+        dispatch(load(reviews));
+    }
+};
+
 export const getUserReviews = (id) => async dispatch => {
     const response = await csrfFetch(`/api/users/${id}/reviews`);
 
     if (response.ok) {
         const reviews = await response.json();
-        dispatch(load(reviews, id))
+        dispatch(add(reviews))
     }
 }
 
@@ -69,7 +77,7 @@ export const updateReview = data => async dispatch => {
 
     if (response.ok) {
         const review = await response.json();
-        dispatch(update(review));
+        dispatch(add(review));
         return review;
     }
 };
@@ -88,28 +96,33 @@ export const deleteReview = reviewId => async dispatch => {
 const initialState = {};
 
 const reviewsReducer = (state = initialState, action) => {
+    let newState;
     switch (action.type) {
         case LOAD_REVIEWS: {
-            const newReviews = {};
+            const allReviews = {};
             action.reviews.forEach(review => {
-                newReviews[review.id] = review;
+                allReviews[review.id] = review;
             })
-            return {
-                ...state,
-                ...newReviews
-            }
+            newState = { ...allReviews }
+            return newState;
         }
+        case ADD_REVIEW: {
+            newState = {
+                ...state,
+                [action.review.id]: {...action.review}
+            }
+            return newState;
+        }
+        // case UPDATE_REVIEW: {
+        //     return {
+        //         ...state,
+        //         [action.review.id]: action.review,
+        //     };
+        // }
         case REMOVE_REVIEW: {
             const newState = { ...state };
             delete newState[action.reviewId];
             return newState;
-        }
-        case ADD_REVIEW:
-        case UPDATE_REVIEW: {
-            return {
-                ...state,
-                [action.review.id]: action.review,
-            };
         }
         default:
             return state;
