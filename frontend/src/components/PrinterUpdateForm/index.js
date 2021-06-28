@@ -10,15 +10,15 @@ const PrinterUpdateForm = () => {
     const {id} = useParams()
     const dispatch = useDispatch();
     const history = useHistory();
-    const sessionUser = useSelector(state => state.session.user);
-    const featureSelect = useSelector(state => state.printer.feature)
-    const currPrinter = useSelector(state => state.printer[id]);
-    const [brand, setBrand] = useState(currPrinter.brand);
-    const [model, setModel] = useState(currPrinter.model);
-    const [description, setDescription] = useState(currPrinter.description);
-    const [retailPrice, setRetailPrice] = useState(currPrinter.retailPrice);
-    const [videoUrl, setVideoUrl] = useState(currPrinter.videoUrl);
-    const [pictureUrl, setPictureUrl] = useState(currPrinter.pictureUrl);
+    const sessionUser = useSelector(state => state?.session?.user);
+    const featureSelect = useSelector(state => state?.printer?.feature)
+    const currPrinter = useSelector(state => state?.printer[id]);
+    const [brand, setBrand] = useState(currPrinter?.brand);
+    const [model, setModel] = useState(currPrinter?.model);
+    const [description, setDescription] = useState(currPrinter?.description);
+    const [retailPrice, setRetailPrice] = useState(currPrinter?.retailPrice);
+    const [videoUrl, setVideoUrl] = useState(currPrinter?.videoUrl);
+    const [pictureUrl, setPictureUrl] = useState(currPrinter?.pictureUrl);
     const [retailStatus, setRetailStatus] = useState(RETAIL[0]);
     const [features, setFeatures] = useState([])
     const [errors, setErrors] = useState([]);
