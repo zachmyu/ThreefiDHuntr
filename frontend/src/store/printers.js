@@ -1,5 +1,4 @@
 import { csrfFetch } from './csrf';
-import { LOAD_REVIEWS, ADD_REVIEW } from './reviews';
 
 const LOAD = 'printers/LOAD';
 const ADD_ONE = 'printers/ADD_ONE';
@@ -130,16 +129,6 @@ const printerReducer = (state = initialState, action) => {
             return newState;
         }
         case ADD_ONE: {
-            // if (!state[action.printer.id]) {
-            //     const newState = {
-            //         ...state,
-            //         [action.printer.id]: action.printer
-            //     };
-            //     const printerList = newState.list.map(id => newState[id]);
-            //     printerList.push(action.printer);
-            //     newState.list = sortList(printerList);
-            //     return newState;
-            // }
             newState = {
                 ...state,
                 [action.printer.id]: {...action.printer}
@@ -150,26 +139,6 @@ const printerReducer = (state = initialState, action) => {
             newState = { ...state }
             delete newState[action.printerId]
             return newState;
-        }
-        // case LOAD_REVIEWS: {
-        //     return {
-        //         ...state,
-        //         [action.printerId]: {
-        //             ...state[action.printerId],
-        //             reviews: action.reviews.map(review => review.id),
-        //         }
-        //     };
-        // }
-
-        case ADD_REVIEW: {
-            // console.log(action.review);
-            return {
-                ...state,
-                    [action.review.printerId]: {
-                    ...state[action.review.printerId],
-                    reviews: [...state[action.review.printerId], action.review.id],
-                },
-            };
         }
         default:
             return state;

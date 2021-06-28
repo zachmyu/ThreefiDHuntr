@@ -1,7 +1,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const { Printer, PrinterReview, FeatureType, PrinterBoost, PrinterTag, OwnedPrinter } = require('../../db/models');
+const { User, Printer, PrinterReview, FeatureType, PrinterBoost, PrinterTag, OwnedPrinter } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
@@ -22,12 +22,12 @@ const validateAdd = [
 		.exists({ checkFalsy: true })
 		.isLength({ min: 2 })
 		.withMessage('If unsure of price, please put an estimate.'),
-	// check('videoUrl')
-	// 	.isURL()
-	// 	.withMessage('Please enter a valid URL.'),
-	// check('pictureUrl')
-	// 	.isURL()
-	// 	.withMessage('Please enter a valid URL.'),
+	check('videoUrl')
+		.isURL()
+		.withMessage('Please enter a valid URL.'),
+	check('pictureUrl')
+		.isURL()
+		.withMessage('Please enter a valid URL.'),
 	handleValidationErrors,
 ];
 
@@ -40,12 +40,12 @@ const validateUpdate = [
 		.exists({ checkFalsy: true })
 		.isLength({ min: 2 })
 		.withMessage('If unsure of price, please put an estimate.'),
-	// check('videoUrl')
-	// 	.isURL()
-	// 	.withMessage('Please enter a valid URL.'),
-	// check('pictureUrl')
-	// 	.isURL()
-	// 	.withMessage('Please enter a valid URL.'),
+	check('videoUrl')
+		.isURL()
+		.withMessage('Please enter a valid URL.'),
+	check('pictureUrl')
+		.isURL()
+		.withMessage('Please enter a valid URL.'),
 	handleValidationErrors,
 ];
 
@@ -69,22 +69,30 @@ router.get('/', asyncHandler(async function (req, res) {
 router.get('/:id', asyncHandler(async function (req, res) {
 	const printer = await Printer.findByPk(req.params.id, {
         include: PrinterReview,
-        // include: "Feature"
     });
-    // const features = await PrinterFeature.findAll();
-	// return res.json(printer, features);
     return res.json(printer);
 }));
 
-//Load printer features
-// router.get('/features', asyncHandler(async function (req, res) {
-// 	const features = await Printer.findAll();
-// 	return res.json(features);
-// }));
+//Add printer review
+router.post('/:id/reviews', validateReview, asyncHandler(async function (req, res) {
+    const {userId, printerId, review} = req.body;
+
+    await PrinterReview.create({
+        userId, printerId, review
+    })
+
+    const reviews = await PrinterReview.findAll({
+        where: {printerId},
+        include: User
+    })
+
+    return res.json(reviews)
+}))
 
 //Load printer reviews
 router.get('/:id/reviews', asyncHandler(async function (req, res) {
-	const reviews = await Review.findAll({ where: { id: req.params.id } });
+	const reviews = await Review.findAll({ where: { id: req.params.id },
+    include: User });
 	return res.json(reviews);
 }));
 

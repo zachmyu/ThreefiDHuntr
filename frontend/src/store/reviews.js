@@ -1,20 +1,16 @@
-export const LOAD_REVIEWS = "reviews/LOAD_REVIEWS";
-export const LOAD_USER_REVIEWS = "reviews/LOAD_USER_REVIEWS";
-export const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
-export const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
-export const ADD_REVIEW = "reviews/ADD_REVIEW";
+import { csrfFetch } from './csrf';
+
+const LOAD_REVIEWS = "reviews/LOAD_REVIEWS";
+const LOAD_USER_REVIEWS = "reviews/LOAD_USER_REVIEWS";
+const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
+const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
+const ADD_REVIEW = "reviews/ADD_REVIEW";
 
 const load = (reviews, id) => ({
     type: LOAD_REVIEWS,
     reviews,
     id,
 });
-
-// const loadUserRev = (reviews, id) => ({
-//     type: LOAD_USER_REVIEWS,
-//     reviews,
-//     id
-// })
 
 const update = (review) => ({
     type: UPDATE_REVIEW,
@@ -33,7 +29,7 @@ const remove = (reviewId, printerId) => ({
 });
 
 export const getReviews = (id) => async dispatch => {
-    const response = await fetch(`/api/printer/${id}/reviews`);
+    const response = await csrfFetch(`/api/printers/${id}/reviews`);
 
     if (response.ok) {
         const reviews = await response.json();
@@ -42,7 +38,7 @@ export const getReviews = (id) => async dispatch => {
 };
 
 export const getUserReviews = (id) => async dispatch => {
-    const response = await fetch(`/api/users/${id}/reviews`);
+    const response = await csrfFetch(`/api/users/${id}/reviews`);
 
     if (response.ok) {
         const reviews = await response.json();
@@ -50,13 +46,11 @@ export const getUserReviews = (id) => async dispatch => {
     }
 }
 
-export const createReview = (data, printerId) => async dispatch => {
-    const response = await fetch(`/api/printer/${printerId}/reviews`, {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+export const createReview = (data) => async dispatch => {
+    const response = await csrfFetch(`/api/printers/${data.printerId}/reviews`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: data.userId, printerId: data.printerId, review: data.review }),
     });
 
     if (response.ok) {
@@ -67,11 +61,9 @@ export const createReview = (data, printerId) => async dispatch => {
 };
 
 export const updateReview = data => async dispatch => {
-    const response = await fetch(`/api/reviews/${data.id}`, {
-        method: 'put',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+    const response = await csrfFetch(`/api/reviews/${data.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
     });
 
@@ -83,7 +75,7 @@ export const updateReview = data => async dispatch => {
 };
 
 export const deleteReview = reviewId => async dispatch => {
-    const response = await fetch(`/api/reviews/${reviewId}`, {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'delete',
     });
 
