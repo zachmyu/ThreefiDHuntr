@@ -1,29 +1,25 @@
 import { useEffect } from 'react';
-// import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { getOneUser } from '../../store/session'
+import { getOneUser, deleteUser, logout } from '../../store/session'
+
+import './Profile.css'
 // import ProfileUpdate from '../ProfileUpdateModal/ProfileUpdateModal';
 
-
 const UserPage = () => {
-
+    const sessionUser = useSelector((state) => state.session)
     const { id } = useParams();
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session)
     const history = useHistory();
-  // const [showEditPrinterForm, setShowEditPrinterForm] = useState(false);
 
     useEffect(() => {
         dispatch(getOneUser(id));
-        // setShowEditPrinterForm(false);
     }, [dispatch, id]);
 
-    if (!user) history.push('/');
+    if (!user.id || !user) history.push('/');
 
     let content = null;
-
     if (sessionUser) {
         content = (
             <div className="User__Edit">
@@ -50,7 +46,14 @@ const UserPage = () => {
                     <p className="user-element">About: {user.about}</p>
                 </div>
                 <div>
-                    {/* Add a list of user submitted reviews here? */}
+                    <h2 id="user-review__title">Reviews submitted by {user.username}</h2>
+                    {user?.PrinterReviews?.map(review => {
+                        return (
+                            <div className="user-review-card" key={review.id}>
+                                {review?.review}
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
             {content}

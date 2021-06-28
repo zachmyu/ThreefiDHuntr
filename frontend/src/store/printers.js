@@ -55,6 +55,15 @@ export const createPrinter = printer => async dispatch => {
     }
 };
 
+//Get Features
+export const getPrinterFeatures = () => async dispatch => {
+    const response = await csrfFetch(`/api/features`);
+    if (response.ok) {
+        const features = await response.json();
+        dispatch(loadFeatures(features));
+    }
+};
+
 //READ ONE
 export const getOnePrinter = id => async dispatch => {
     const response = await csrfFetch(`/api/printers/${id}`);
@@ -67,30 +76,19 @@ export const getOnePrinter = id => async dispatch => {
 //READ ALL
 export const getPrinters = () => async dispatch => {
     const response = await csrfFetch(`/api/printers`);
-
     if (response.ok) {
         const printers = await response.json();
         dispatch(load(printers));
     }
 };
 
-export const getPrinterFeatures = () => async dispatch => {
-    const response = await csrfFetch(`/api/features`);
-
-    if (response.ok) {
-        const features = await response.json();
-        dispatch(loadFeatures(features));
-    }
-};
-
 //UPDATE
 export const updatePrinter = (data, id) => async dispatch => {
     const response = await csrfFetch(`/api/printers/${id}`, {
-        method: 'put',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
     });
-
     if (response.ok) {
         const printer = await response.json();
         dispatch(addOnePrinter(printer));
@@ -153,15 +151,15 @@ const printerReducer = (state = initialState, action) => {
             delete newState[action.printerId]
             return newState;
         }
-        case LOAD_REVIEWS: {
-            return {
-                ...state,
-                [action.printerId]: {
-                    ...state[action.printerId],
-                    reviews: action.reviews.map(review => review.id),
-                }
-            };
-        }
+        // case LOAD_REVIEWS: {
+        //     return {
+        //         ...state,
+        //         [action.printerId]: {
+        //             ...state[action.printerId],
+        //             reviews: action.reviews.map(review => review.id),
+        //         }
+        //     };
+        // }
 
         case ADD_REVIEW: {
             // console.log(action.review);

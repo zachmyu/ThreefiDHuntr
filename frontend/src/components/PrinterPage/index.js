@@ -15,17 +15,16 @@ const PrinterPage = () => {
 
     useEffect(() => {
         dispatch(getOnePrinter(id));
-
     }, [dispatch, id]);
 
     const handleDelete = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             await dispatch(deletePrinter(printer.id))
             history.push('/')
         } catch (e) {
             //This error shouldn't appear unless the printer is deleted directly from the database but not removed from the state...
-            console.log(e);
+            console.log("Printer Deletion Error", e);
         }
     }
 

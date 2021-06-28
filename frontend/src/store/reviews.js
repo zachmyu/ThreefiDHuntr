@@ -1,13 +1,20 @@
 export const LOAD_REVIEWS = "reviews/LOAD_REVIEWS";
+export const LOAD_USER_REVIEWS = "reviews/LOAD_USER_REVIEWS";
 export const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
 export const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 export const ADD_REVIEW = "reviews/ADD_REVIEW";
 
-const load = (reviews, printerId) => ({
+const load = (reviews, id) => ({
     type: LOAD_REVIEWS,
     reviews,
-    printerId,
+    id,
 });
+
+// const loadUserRev = (reviews, id) => ({
+//     type: LOAD_USER_REVIEWS,
+//     reviews,
+//     id
+// })
 
 const update = (review) => ({
     type: UPDATE_REVIEW,
@@ -25,7 +32,7 @@ const remove = (reviewId, printerId) => ({
     printerId,
 });
 
-export const getReviews = (id) => async (dispatch) => {
+export const getReviews = (id) => async dispatch => {
     const response = await fetch(`/api/printer/${id}/reviews`);
 
     if (response.ok) {
@@ -33,6 +40,15 @@ export const getReviews = (id) => async (dispatch) => {
         dispatch(load(reviews, id));
     }
 };
+
+export const getUserReviews = (id) => async dispatch => {
+    const response = await fetch(`/api/users/${id}/reviews`);
+
+    if (response.ok) {
+        const reviews = await response.json();
+        dispatch(load(reviews, id))
+    }
+}
 
 export const createReview = (data, printerId) => async dispatch => {
     const response = await fetch(`/api/printer/${printerId}/reviews`, {

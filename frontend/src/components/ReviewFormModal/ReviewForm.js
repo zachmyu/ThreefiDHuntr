@@ -13,11 +13,12 @@ import './ReviewForm.css';
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("printerrrrrrrrrrrrId???", printerId)
         setErrors([]);
-        return dispatch(reviewActions.createReview({ userId: sessionUser.id, printerId, review, })).catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        });
+        // return dispatch(reviewActions.createReview({ userId: sessionUser.id, printerId, review, })).catch(async (res) => {
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        // });
     }
 
     return (
@@ -35,12 +36,12 @@ import './ReviewForm.css';
                 />
             </label>
 
-            <input
+            {/* <input
                 type="text"
                 value={sessionUser.id}
                 required
                 hidden
-            />
+            /> */}
             <input
                 type="text"
                 value={printerId}
