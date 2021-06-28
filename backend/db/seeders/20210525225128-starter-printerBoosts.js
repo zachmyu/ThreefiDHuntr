@@ -3,6 +3,15 @@
 module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.bulkInsert('PrinterBoosts', [
+            { userId: 1, printerId: 1 },
+            { userId: 1, printerId: 2 },
+            { userId: 1, printerId: 3 },
+            { userId: 2, printerId: 4 },
+            { userId: 2, printerId: 5 },
+            { userId: 3, printerId: 6 },
+            { userId: 3, printerId: 7 },
+            { userId: 4, printerId: 8 },
+            { userId: 4, printerId: 9 },
             { userId: 5, printerId: 1 },
             { userId: 5, printerId: 2 },
             { userId: 6, printerId: 3 },
