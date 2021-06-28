@@ -57,7 +57,7 @@ router.get('/', asyncHandler(async function (_req, res) {
 router.get('/:id', asyncHandler(async function (req, res) {
     const user = await User.findByPk(req.params.id, {
         include: {
-            model: Reviews,
+            model: PrinterReviews,
             model: OwnedPrinters,
             model: Printers,
             model: PrinterTags

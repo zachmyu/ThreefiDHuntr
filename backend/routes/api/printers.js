@@ -119,7 +119,7 @@ router.post('/', validateAdd, asyncHandler(async (req, res) => {
 //Edit printer info
 router.put('/:id', validateUpdate, asyncHandler(async function (req, res) {
     await Printer.update(req.body, { where: { id: req.params.id } })
-    const printer = await Printer.findByPk(req,params.id)
+    const printer = await Printer.findByPk(req.params.id)
 	return res.json(printer)
 }));
 

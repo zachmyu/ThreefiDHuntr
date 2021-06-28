@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 
@@ -34,12 +34,12 @@ function ProfileButton({ user }) {
             </button>
             {showMenu && (
                 <div id="profile-dropdown">
-                    <Link to={`/users/${user.id}`}>
-                        <button className="button1" type="button">User Edit</button>
-                    </Link>
-                    <Link to="/createPrinter">
+                    <NavLink to={`/users/${user.id}`}>
+                        <button className="button1" type="button">User Info</button>
+                    </NavLink>
+                    <NavLink to="/createPrinter">
                         <button className="button1" type="button">Create a new printer</button>
-                    </Link>
+                    </NavLink>
                     <button className="button1" onClick={logout}>Log Out</button>
                 </div>
             )}

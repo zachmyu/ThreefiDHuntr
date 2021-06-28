@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import { getOnePrinter, deletePrinter } from '../../store/printers'
 import ReviewFormModal from '../ReviewFormModal';
@@ -12,11 +12,10 @@ const PrinterPage = () => {
     const printer = useSelector(state => state.printer[id]);
     const dispatch = useDispatch();
     const history = useHistory();
-    const [showEditPrinterForm, setShowEditPrinterForm] = useState(false);
 
     useEffect(() => {
         dispatch(getOnePrinter(id));
-        setShowEditPrinterForm(false);
+
     }, [dispatch, id]);
 
     const handleDelete = async (e) => {
@@ -37,8 +36,9 @@ const PrinterPage = () => {
         submitContent = (
             <div className="Reviews__Create">
                 <ReviewFormModal />
-                <button className="button1" type="button">{showEditPrinterForm}Edit Printer Info</button>
-
+                <NavLink to={`/printers/${id}/edit`}>
+                    <button className="button1" type="button">Edit Printer Info</button>
+                </NavLink>
                 <button className="button1" type="button" onClick={handleDelete}>Delete Printer</button>
             </div>
         )

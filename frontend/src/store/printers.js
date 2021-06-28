@@ -84,8 +84,8 @@ export const getPrinterFeatures = () => async dispatch => {
 };
 
 //UPDATE
-export const updatePrinter = data => async dispatch => {
-    const response = await csrfFetch(`/api/printers/${data.id}`, {
+export const updatePrinter = (data, id) => async dispatch => {
+    const response = await csrfFetch(`/api/printers/${id}`, {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),

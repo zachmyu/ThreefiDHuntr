@@ -43,7 +43,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className="printer-card-right">
-                                <i class="fas fa-chevron-up"></i>
+                                <i className="fas fa-chevron-up"></i>
                                 <div className="secondary-text">{printer?.Boost?.length}</div>
                             </div>
                         </NavLink>
