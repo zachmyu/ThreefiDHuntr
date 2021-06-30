@@ -27,5 +27,9 @@
 	"bugs": {
 		"url": "https://github.com/zachmyu/ThreefiDHuntr/issues"
 	},
-	"homepage": "https://github.com/zachmyu/ThreefiDHuntr#readme"
+	"homepage": "https://github.com/zachmyu/ThreefiDHuntr#readme",
+	"devDependencies": {
+		"eslint": "^7.29.0",
+		"prettier": "^2.3.2"
+	}
 }
