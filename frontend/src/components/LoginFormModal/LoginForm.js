@@ -19,6 +19,12 @@ function LoginForm() {
         });
     }
 
+    const demoLogin = () => {
+        setCredential('demolovato@mcdemoface.com');
+        setPassword('3f!ddyUser');
+        return dispatch(sessionActions.login({ credential, password }))
+    }
+
     return (
         <form className='login--container' onSubmit={handleSubmit}>
             <ul>
@@ -27,26 +33,26 @@ function LoginForm() {
             <label className="login--element--container">
                 Username or Email
                 <input
-                className="login--element"
-                type="text"
-                value={credential}
-                onChange={(e) => setCredential(e.target.value)}
-                required
+                    className="login--element"
+                    type="text"
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
+                    required
                 />
             </label>
             <label className="login--element--container">
                 Password
                 <input
-                className="login--element"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
+                    className="login--element"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                 />
             </label>
             <div className="login__button--container">
                 <button className="button2" type="submit">Log In</button>
-                <button className="button1" type="submit">Demo User</button>
+                <button className="button1" onClick={() => demoLogin()}>Demo User</button>
             </div>
         </form>
     );
