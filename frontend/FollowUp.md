@@ -1,3 +1,6 @@
+heroku login
+git push heroku
+
 How do I add the join table for printer features in printer creation form?
 printer features...
 
