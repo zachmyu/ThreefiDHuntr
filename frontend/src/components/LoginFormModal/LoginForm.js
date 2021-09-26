@@ -19,7 +19,8 @@ function LoginForm() {
         });
     }
 
-    const demoLogin = () => {
+    const demoLogin = async (e) => {
+        e.preventDefault();
         setCredential('demolovato@mcdemoface.com');
         setPassword('3f!ddyUser');
         return dispatch(sessionActions.login({ credential, password }))
