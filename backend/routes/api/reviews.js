@@ -1,7 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
-// const ReviewsRepository = require("../../db/reviews-repository");
 const { Review, User, Printer } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 

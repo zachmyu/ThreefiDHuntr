@@ -2,9 +2,8 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { setTokenCookie } = require('../../utils/auth');
-const { User, PrinterBoost, PrinterTag, OwnedPrinter,PrinterReview } = require('../../db/models');
+const { User, PrinterBoost, PrinterTag, OwnedPrinter, PrinterReview } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
-// const ReviewsRepository = require('../../db/reviews-repository');
 const router = express.Router();
 
 const validateSignup = [
@@ -61,7 +60,8 @@ router.get('/:id', asyncHandler(async function (req, res) {
             model: PrinterTag,
             model: OwnedPrinter,
             model: PrinterReview
-        }});
+        }
+    });
     return res.json(user);
 }));
 
