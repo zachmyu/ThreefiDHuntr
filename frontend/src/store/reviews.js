@@ -1,16 +1,41 @@
 import { csrfFetch } from './csrf';
 
-const LOAD_REVIEWS = "reviews/LOAD_REVIEWS";
-// const LOAD_USER_REVIEWS = "reviews/LOAD_USER_REVIEWS";
-const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
-// const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
-const ADD_REVIEW = "reviews/ADD_REVIEW";
+const READ_SINGLE_REVIEW = "reviews/READ_SINGLE_REVIEW"
+const READ_ALL_REVIEWS = "reviews/READ_ALL_REVIEWS";
+const CREATE_REVIEW = "reviews/CREATE_REVIEW";
+const UPDATE_REVIEW = "reviews/UPDATE_REVIEW"
+const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 
-const load = (reviews, id) => ({
-    type: LOAD_REVIEWS,
-    reviews,
-    id,
+const loadOneReview = review => ({
+    type: READ_SINGLE_REVIEW,
+    payload: review
 });
+
+const loadAllReviews = reviews => ({
+    type: READ_ALL_REVIEWS,
+    payload: reviews
+});
+
+const addReview = review => ({
+    type: CREATE_REVIEW,
+    payload: review
+});
+
+const changeReview = reviewId => ({
+    type: UPDATE_REVIEW,
+    payload: reviewId
+});
+
+const removeReview = reviewId => ({
+    type: DELETE_REVIEW,
+    payload: reviewId
+});
+
+// const load = (reviews, id) => ({
+//     type: READ_ALL_REVIEWS,
+//     reviews,
+//     id,
+// });
 
 // const update = (review) => ({
 //     type: UPDATE_REVIEW,
@@ -18,12 +43,12 @@ const load = (reviews, id) => ({
 // });
 
 const add = (review) => ({
-    type: ADD_REVIEW,
+    type: CREATE_REVIEW,
     review,
 });
 
 const remove = (reviewId, printerId) => ({
-    type: REMOVE_REVIEW,
+    type: DELETE_REVIEW,
     reviewId,
     printerId,
 });
@@ -98,7 +123,7 @@ const initialState = {};
 const reviewsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case LOAD_REVIEWS: {
+        case READ_ALL_REVIEWS: {
             const allReviews = {};
             action.reviews.forEach(review => {
                 allReviews[review.id] = review;
@@ -106,10 +131,10 @@ const reviewsReducer = (state = initialState, action) => {
             newState = { ...allReviews }
             return newState;
         }
-        case ADD_REVIEW: {
+        case CREATE_REVIEW: {
             newState = {
                 ...state,
-                [action.review.id]: {...action.review}
+                [action.review.id]: { ...action.review }
             }
             return newState;
         }
@@ -119,7 +144,7 @@ const reviewsReducer = (state = initialState, action) => {
         //         [action.review.id]: action.review,
         //     };
         // }
-        case REMOVE_REVIEW: {
+        case DELETE_REVIEW: {
             const newState = { ...state };
             delete newState[action.reviewId];
             return newState;
