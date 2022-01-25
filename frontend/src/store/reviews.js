@@ -1,9 +1,9 @@
 import { csrfFetch } from './csrf';
 
-const READ_SINGLE_REVIEW = "reviews/READ_SINGLE_REVIEW"
+const READ_SINGLE_REVIEW = "reviews/READ_SINGLE_REVIEW";
 const READ_ALL_REVIEWS = "reviews/READ_ALL_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
-const UPDATE_REVIEW = "reviews/UPDATE_REVIEW"
+const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 
 const loadOneReview = review => ({
@@ -31,127 +31,122 @@ const removeReview = reviewId => ({
     payload: reviewId
 });
 
-// const load = (reviews, id) => ({
-//     type: READ_ALL_REVIEWS,
-//     reviews,
-//     id,
-// });
-
-// const update = (review) => ({
-//     type: UPDATE_REVIEW,
-//     review,
-// });
-
-const add = (review) => ({
-    type: CREATE_REVIEW,
-    review,
-});
-
-const remove = (reviewId, printerId) => ({
-    type: DELETE_REVIEW,
-    reviewId,
-    printerId,
-});
-
-export const getReviews = id => async dispatch => {
-    const response = await csrfFetch(`/api/printers/${id}/reviews`);
-
-    if (response.ok) {
-        const reviews = await response.json();
-        dispatch(load(reviews, id));
-    }
+export const getOneReview = reviewId => async dispatch => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}/`);
+    const data = await response.json();
+    if (res.ok) {
+        dispatch(loadOneReview(data));
+    } else {
+        throw res;
+    };
 };
 
-export const getOneReview = id => async dispatch => {
-    const response = await csrfFetch(`/api/reviews/${id}`);
-    if (response.ok) {
-        const reviews = await response.json();
-        dispatch(load(reviews));
-    }
+export const getAllPrinterReviews = printerId => async dispatch => {
+    const res = await csrfFetch(`/api/reviews/printers/${printerId}/`);
+    const data = await response.json();
+    if (res.ok) {
+        dispatch(loadAllReviews(data));
+    } else {
+        throw res;
+    };
 };
 
-export const getUserReviews = (id) => async dispatch => {
-    const response = await csrfFetch(`/api/users/${id}/reviews`);
+export const getAllUserReviews = userId => async dispatch => {
+    const res = await csrfFetch(`/api/reviews/users/${userId}/`);
+    const data = await response.json();
+    if (res.ok) {
+        dispatch(loadAllReviews(data));
+    } else {
+        throw res;
+    };
+};
 
-    if (response.ok) {
-        const reviews = await response.json();
-        dispatch(add(reviews))
-    }
-}
-
-export const createReview = (data) => async dispatch => {
-    const response = await csrfFetch(`/api/printers/${data.printerId}/reviews`, {
+export const createReview = reviewData => async dispatch => {
+    const { userId, printerId, review } = reviewData;
+    const res = await csrfFetch(`/api/reviews/printers/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: data.userId, printerId: data.printerId, review: data.review }),
+        body: JSON.stringify({
+            userId,
+            printerId,
+            review
+        }),
     });
+    const data = await response.json();
 
-    if (response.ok) {
-        const review = await response.json();
-        dispatch(add(review));
+    if (res.ok) {
+        dispatch(addReview(data));
         return review;
-    }
+    } else {
+        throw res;
+    };
 };
 
-export const updateReview = data => async dispatch => {
-    const response = await csrfFetch(`/api/reviews/${data.id}`, {
+export const updateReview = reviewData => async dispatch => {
+    const { userId, printerId, review, reviewId } = reviewData
+    const res = await csrfFetch(`/api/reviews/${reviewId}/`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+            userId,
+            printerId,
+            review
+        }),
     });
+    const data = await res.json();
 
-    if (response.ok) {
-        const review = await response.json();
-        dispatch(add(review));
-        return review;
-    }
+    if (res.ok) {
+        dispatch(changeReview(data));
+    } else {
+        throw res;
+    };
 };
 
 export const deleteReview = reviewId => async dispatch => {
-    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+    const res = await csrfFetch(`/api/reviews/${reviewId}/`, {
         method: 'delete',
     });
 
-    if (response.ok) {
-        const review = await response.json();
-        dispatch(remove(review.id, review.printerId));
-    }
+    if (res.ok) {
+        dispatch(removeReview(reviewId));
+    } else {
+        throw res;
+    };
 };
 
 const initialState = {};
-
 const reviewsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case READ_ALL_REVIEWS: {
-            const allReviews = {};
-            action.reviews.forEach(review => {
-                allReviews[review.id] = review;
-            })
-            newState = { ...allReviews }
+        case READ_SINGLE_REVIEW:
+            newState = { ...state };
+            newState.current = action.payload;
             return newState;
-        }
-        case CREATE_REVIEW: {
+
+        case READ_ALL_REVIEWS:
+            newState = { ...action.payload };
+            return newState;
+
+        case CREATE_REVIEW:
+            newState = Object.assign({}, state);
+            newState[action.payload.review.id] = action.payload.review;
+            return newState;
+
+        case UPDATE_REVIEW:
             newState = {
                 ...state,
-                [action.review.id]: { ...action.review }
-            }
+                [action.payload.id]: action.payload
+            };
             return newState;
-        }
-        // case UPDATE_REVIEW: {
-        //     return {
-        //         ...state,
-        //         [action.review.id]: action.review,
-        //     };
-        // }
-        case DELETE_REVIEW: {
-            const newState = { ...state };
-            delete newState[action.reviewId];
+
+        case DELETE_REVIEW:
+            newState = { ...state };
+            delete newState[action.payload];
             return newState;
-        }
+
         default:
             return state;
-    }
+    };
 };
 
 export default reviewsReducer;
