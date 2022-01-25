@@ -33,7 +33,7 @@ const removeReview = reviewId => ({
 
 export const getOneReview = reviewId => async dispatch => {
     const res = await csrfFetch(`/api/reviews/${reviewId}/`);
-    const data = await response.json();
+    const data = await res.json();
     if (res.ok) {
         dispatch(loadOneReview(data));
     } else {
@@ -43,7 +43,7 @@ export const getOneReview = reviewId => async dispatch => {
 
 export const getAllPrinterReviews = printerId => async dispatch => {
     const res = await csrfFetch(`/api/reviews/printers/${printerId}/`);
-    const data = await response.json();
+    const data = await res.json();
     if (res.ok) {
         dispatch(loadAllReviews(data));
     } else {
@@ -53,7 +53,7 @@ export const getAllPrinterReviews = printerId => async dispatch => {
 
 export const getAllUserReviews = userId => async dispatch => {
     const res = await csrfFetch(`/api/reviews/users/${userId}/`);
-    const data = await response.json();
+    const data = await res.json();
     if (res.ok) {
         dispatch(loadAllReviews(data));
     } else {
@@ -72,7 +72,7 @@ export const createReview = reviewData => async dispatch => {
             review
         }),
     });
-    const data = await response.json();
+    const data = await res.json();
 
     if (res.ok) {
         dispatch(addReview(data));
